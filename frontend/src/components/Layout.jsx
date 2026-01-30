@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link, NavLink } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { useCart } from '../context/CartContext';
 import { gettext } from '../utils/translations';
@@ -16,14 +17,19 @@ export const Header = () => {
               R
             </div>
             <div>
-              <h1 className="text-xl font-bold text-ramyaas-700">{gettext('ramyaas', language)}</h1>
-              <p className="text-xs text-gray-500">{gettext('tagline', language)}</p>
+              <h1 className="text-xl font-bold text-ramyaas-700">
+                {gettext('ramyaas', language)}
+              </h1>
+              <p className="text-xs text-gray-500">
+                {gettext('tagline', language)}
+              </p>
             </div>
           </div>
-          
+
           <div className="flex items-center gap-4">
-            <a
-              href="/cart"
+            {/* ✅ FIXED: Cart link */}
+            <Link
+              to="/cart"
               className="relative px-4 py-2 rounded-lg hover:bg-gray-100 transition-smooth"
             >
               <span className="text-2xl">🛒</span>
@@ -32,9 +38,9 @@ export const Header = () => {
                   {getTotalItems()}
                 </span>
               )}
-            </a>
-            
-            <button 
+            </Link>
+
+            <button
               onClick={toggleLanguage}
               className="px-4 py-2 bg-ramyaas-100 text-ramyaas-700 rounded-lg font-semibold hover:bg-ramyaas-200 transition-smooth"
             >
@@ -66,13 +72,20 @@ export const Navigation = () => {
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex gap-8 overflow-x-auto py-3">
           {navItems.map(item => (
-            <a
+            /* ✅ FIXED: NavLink instead of <a> */
+            <NavLink
               key={item.path}
-              href={item.path}
-              className="text-sm font-medium text-gray-600 hover:text-ramyaas-600 whitespace-nowrap transition-smooth"
+              to={item.path}
+              className={({ isActive }) =>
+                `text-sm font-medium whitespace-nowrap transition-smooth ${
+                  isActive
+                    ? 'text-ramyaas-700 font-bold'
+                    : 'text-gray-600 hover:text-ramyaas-600'
+                }`
+              }
             >
               {gettext(item.key, language)}
-            </a>
+            </NavLink>
           ))}
         </div>
       </div>
@@ -88,23 +101,36 @@ export const Footer = () => {
       <div className="max-w-7xl mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
-            <h3 className="font-bold text-lg text-ramyaas-700 mb-4">{gettext('ramyaas', language)}</h3>
-            <p className="text-sm text-gray-600">{gettext('tagline', language)}</p>
+            <h3 className="font-bold text-lg text-ramyaas-700 mb-4">
+              {gettext('ramyaas', language)}
+            </h3>
+            <p className="text-sm text-gray-600">
+              {gettext('tagline', language)}
+            </p>
           </div>
-          
+
           <div>
             <h4 className="font-semibold text-gray-800 mb-4">Links</h4>
             <ul className="text-sm text-gray-600 space-y-2">
-              <li><a href="/" className="hover:text-ramyaas-600">{gettext('home', language)}</a></li>
-              <li><a href="/contact" className="hover:text-ramyaas-600">{gettext('contact', language)}</a></li>
+              {/* ✅ FIXED */}
+              <li>
+                <Link to="/" className="hover:text-ramyaas-600">
+                  {gettext('home', language)}
+                </Link>
+              </li>
+              <li>
+                <Link to="/contact" className="hover:text-ramyaas-600">
+                  {gettext('contact', language)}
+                </Link>
+              </li>
             </ul>
           </div>
-          
+
           <div>
             <h4 className="font-semibold text-gray-800 mb-4">Contact</h4>
             <p className="text-sm text-gray-600">
-              Email: info@ramyaas.com<br/>
-              Phone: +91 XXXXXXXXXX<br/>
+              Email: info@ramyaas.com<br />
+              Phone: +91 XXXXXXXXXX<br />
               © 2024 RAMYAAS
             </p>
           </div>
