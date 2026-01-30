@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import { Header, Navigation, Footer } from './components/Layout';
 import Home from './pages/Home';
 import Snacks from './pages/Snacks';
@@ -40,3 +40,4 @@ function App() {
 }
 
 export default App;
+
