@@ -9,6 +9,54 @@ import AdminOrders from './AdminOrders';
 const Admin = () => {
   const { language } = useLanguage();
   const [activeTab, setActiveTab] = useState('dashboard');
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+
+  // Simple password check (change "ramyaas123" to your desired password)
+  const handleLogin = (e) => {
+    e.preventDefault();
+    if (password === 'ramyaas123') {
+      setIsAuthenticated(true);
+      setError('');
+      setPassword('');
+    } else {
+      setError('Incorrect password');
+      setPassword('');
+    }
+  };
+
+  // If not authenticated, show login form
+  if (!isAuthenticated) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center px-4">
+        <div className="bg-white rounded-lg p-8 max-w-md w-full">
+          <h1 className="text-3xl font-bold text-ramyaas-700 mb-6 text-center">Admin Access</h1>
+          <form onSubmit={handleLogin} className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Password
+              </label>
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Enter admin password"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-ramyaas-500"
+              />
+            </div>
+            {error && <p className="text-red-500 text-sm">{error}</p>}
+            <button
+              type="submit"
+              className="w-full bg-ramyaas-600 text-white py-2 rounded-lg font-semibold hover:bg-ramyaas-700 transition-smooth"
+            >
+              Login
+            </button>
+          </form>
+        </div>
+      </div>
+    );
+  }
 
   const tabs = [
     { id: 'dashboard', label: 'Dashboard' },
@@ -22,7 +70,15 @@ const Admin = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 py-10">
-        <h1 className="text-4xl font-bold text-ramyaas-700 mb-8">Admin Dashboard</h1>
+        <div className="flex justify-between items-center mb-8">
+          <h1 className="text-4xl font-bold text-ramyaas-700">Admin Dashboard</h1>
+          <button
+            onClick={() => setIsAuthenticated(false)}
+            className="px-4 py-2 bg-red-600 text-white rounded-lg font-semibold hover:bg-red-700 transition-smooth"
+          >
+            Logout
+          </button>
+        </div>
 
         {/* Tabs */}
         <div className="flex gap-2 mb-8 border-b border-gray-200 overflow-x-auto">

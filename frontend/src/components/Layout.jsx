@@ -67,7 +67,8 @@ export const Navigation = () => {
     { key: 'bulkOrders', path: '/bulk-orders' },
     { key: 'reels', path: '/reels' },
     { key: 'contact', path: '/contact' },
-    { key: 'admin', path: '/admin' },
+    // ❌ HIDDEN: Admin section removed from navigation
+    // Accessible via direct URL: /#/admin
   ];
 
   return (
