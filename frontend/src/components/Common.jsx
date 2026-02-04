@@ -4,6 +4,18 @@ import { useCart } from '../context/CartContext';
 import { gettext } from '../utils/translations';
 import { snackApi } from '../utils/api';
 
+// Helper function to get correct image URL
+const getImageUrl = (imagePath) => {
+  if (!imagePath) return '';
+  
+  // Get API base URL and extract backend base URL
+  const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+  const backendUrl = apiUrl.replace('/api', '');
+  
+  // Build full image URL
+  return `${backendUrl}/uploads/images/${imagePath}`;
+};
+
 export const SnackCard = ({ snack }) => {
   const { language } = useLanguage();
   const { addToCart } = useCart();
@@ -24,7 +36,7 @@ export const SnackCard = ({ snack }) => {
     <div className="bg-white rounded-lg overflow-hidden border border-gray-100 hover:shadow-lg transition-smooth">
       {snack.image && (
         <img
-          src={`http://localhost:5000/uploads/images/${snack.image}`}
+          src={getImageUrl(snack.image)}
           alt={snack[language === 'ta' ? 'nameTA' : 'nameEN']}
           className="w-full h-63object-cover"
           onError={(e) => {

@@ -4,6 +4,14 @@ import { useLanguage } from '../context/LanguageContext';
 import { useCart } from '../context/CartContext';
 import { gettext } from '../utils/translations';
 
+// Helper function to get correct image URL
+const getImageUrl = (imagePath) => {
+  if (!imagePath) return '';
+  const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+  const backendUrl = apiUrl.replace('/api', '');
+  return `${backendUrl}/uploads/images/${imagePath}`;
+};
+
 const Cart = () => {
   const { language } = useLanguage();
   const { cartItems, removeFromCart, updateQuantity, getTotalPrice, getTotalItems } = useCart();
@@ -47,7 +55,7 @@ const Cart = () => {
                   {/* Product Image */}
                   <div className="w-24 h-24 flex-shrink-0">
                     <img
-                      src={`http://localhost:5000/uploads/images/${item.image}`}
+                    src={getImageUrl(item.image)}
                       alt={item[language === 'ta' ? 'nameTA' : 'nameEN']}
                       className="w-full h-full object-cover rounded-lg"
                     />

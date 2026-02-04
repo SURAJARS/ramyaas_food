@@ -2,6 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { LoadingSpinner, SuccessMessage, ErrorMessage } from '../../components/Common';
 import { menuApi } from '../../utils/api';
 
+// Helper function to get correct image URL
+const getImageUrl = (imagePath) => {
+  if (!imagePath) return '';
+  const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+  const backendUrl = apiUrl.replace('/api', '');
+  return `${backendUrl}/uploads/images/${imagePath}`;
+};
+
 const AdminMenu = () => {
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -127,7 +135,7 @@ const AdminMenu = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {images.map(image => (
             <div key={image._id} className="bg-white p-4 rounded-lg border border-gray-200">
-              <img src={`http://localhost:5000/uploads/images/${image.image}`} alt={image.titleTA} className="w-full h-72 object-cover rounded mb-4" />
+              <img src={getImageUrl(image.image)} alt={image.titleTA} className="w-full h-72 object-cover rounded mb-4" />
               <h3 className="font-semibold text-gray-800 mb-2">{image.titleTA}</h3>
               <button
                 onClick={() => handleDelete(image._id)}

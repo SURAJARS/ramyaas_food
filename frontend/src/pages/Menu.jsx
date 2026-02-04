@@ -5,6 +5,14 @@ import { LoadingSpinner, ErrorMessage } from '../components/Common';
 import { menuApi } from '../utils/api';
 import { LightboxImage } from '../components/Lightbox';
 
+// Helper function to get correct image URL
+const getImageUrl = (imagePath) => {
+  if (!imagePath) return '';
+  const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+  const backendUrl = apiUrl.replace('/api', '');
+  return `${backendUrl}/uploads/images/${imagePath}`;
+};
+
 const Menu = () => {
   const { language } = useLanguage();
   const [images, setImages] = useState([]);
@@ -47,7 +55,7 @@ const Menu = () => {
                 onClick={() => setSelectedImage(image)}
               >
                 <img
-                  src={`http://localhost:5000/uploads/images/${image.image}`}
+                  src={getImageUrl(image.image)}
                   alt={image[language === 'ta' ? 'titleTA' : 'titleEN']}
                   className="w-full h-80 object-cover rounded-lg"
                   onError={(e) => {
@@ -67,7 +75,7 @@ const Menu = () => {
 
       {selectedImage && (
         <LightboxImage
-          src={`http://localhost:5000/uploads/images/${selectedImage.image}`}
+          src={getImageUrl(selectedImage.image)}
           title={selectedImage[language === 'ta' ? 'titleTA' : 'titleEN']}
           onClose={() => setSelectedImage(null)}
         />
