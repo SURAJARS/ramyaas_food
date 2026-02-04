@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react'
 
 export default defineConfig({
   plugins: [react()],
-  base: '/ramyaas_food/', // 👈 MUST match repo name
+  base: process.env.NODE_ENV === 'production' ? '/' : '/ramyaas_food/', // Production: '/', Development: '/ramyaas_food/'
   server: {
     port: 5173,
     proxy: {
