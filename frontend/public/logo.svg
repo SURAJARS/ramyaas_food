@@ -1,0 +1,31 @@
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Chef hat -->
+  <ellipse cx="100" cy="45" rx="35" ry="20" fill="white" stroke="#333" stroke-width="2"/>
+  <path d="M 65 45 Q 65 30 100 25 Q 135 30 135 45" fill="white" stroke="#333" stroke-width="2"/>
+  
+  <!-- Chef head -->
+  <circle cx="100" cy="75" r="20" fill="#f4a460" stroke="#333" stroke-width="2"/>
+  
+  <!-- Chef face -->
+  <circle cx="95" cy="72" r="2" fill="#333"/>
+  <circle cx="105" cy="72" r="2" fill="#333"/>
+  <path d="M 100 78 Q 98 82 100 83 Q 102 82 100 78" fill="#ff69b4"/>
+  
+  <!-- Chef body -->
+  <ellipse cx="100" cy="105" rx="18" ry="22" fill="white" stroke="#333" stroke-width="2"/>
+  
+  <!-- Chef apron -->
+  <rect x="85" y="100" width="30" height="25" fill="#ff6b6b" stroke="#333" stroke-width="1.5" rx="2"/>
+  
+  <!-- Chef neck tie -->
+  <rect x="98" y="92" width="4" height="8" fill="#d63031"/>
+  
+  <!-- Spoon -->
+  <path d="M 120 85 L 135 70 L 138 75 L 123 90" fill="none" stroke="#8B4513" stroke-width="3" stroke-linecap="round"/>
+  
+  <!-- Flame decoration -->
+  <path d="M 150 120 Q 155 100 160 90 Q 165 100 170 120 Q 168 140 160 150 Q 152 140 150 120" fill="#ff6b6b" stroke="#ff8c42" stroke-width="2"/>
+  <path d="M 160 115 Q 165 105 168 100 Q 170 105 170 115 Q 168 130 160 135" fill="#ffd93d" stroke="none"/>
+  
+  <!-- Text styling support (logo focuses on icon) -->
+</svg>

@@ -1,0 +1,55 @@
+# Dependencies
+node_modules/
+/.pnp
+.pnp.js
+
+# Environment variables
+.env
+.env.local
+.env.production.local
+.env.test.local
+.env.production
+
+# Build outputs
+/frontend/dist/
+/backend/build/
+/backend/.env
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
+*.log
+
+# OS files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE
+.vscode/
+.vscode-insiders/
+.idea/
+*.swp
+*.swo
+*~
+
+# Database
+/backend/src/uploads/
+mongodb.log
+
+# Testing
+/coverage
+.nyc_output
+
+# Misc
+.cache
+.next
+out
+dist
