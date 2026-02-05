@@ -86,38 +86,11 @@ const Reels = () => {
                   />
                 )}
                 {reel.type === 'instagram' && reel.instagramLink && (
-                  <div className="w-full h-64 bg-gradient-to-br from-pink-50 to-orange-50 flex items-center justify-center p-4 cursor-pointer hover:from-pink-100 hover:to-orange-100 transition-colors relative overflow-hidden group">
-                    {/* Play button overlay */}
-                    <div className="absolute inset-0 flex items-center justify-center bg-black/0 group-hover:bg-black/10 transition-colors">
-                      <svg 
-                        className="w-16 h-16 text-pink-500 drop-shadow-lg group-hover:scale-110 transition-transform" 
-                        fill="currentColor" 
-                        viewBox="0 0 24 24"
-                      >
-                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5h3V9h4v3h3l-5 5z" />
-                      </svg>
-                    </div>
-                    
-                    {/* Text indicator */}
-                    <div className="absolute bottom-4 left-4 right-4">
-                      <p className="text-sm font-semibold text-pink-600 group-hover:text-pink-700">
-                        📸 Click to load
-                      </p>
-                      <p className="text-xs text-gray-600 mt-1">
-                        {reel[language === 'ta' ? 'titleTA' : 'titleEN']}
-                      </p>
-                    </div>
-
+                  <div className="w-full h-64 bg-gradient-to-br from-pink-50 to-orange-50 flex items-center justify-center p-4 relative overflow-hidden group">
                     <blockquote 
-                      className="instagram-media hidden" 
+                      className="instagram-media" 
                       data-instgrm-permalink={reel.instagramLink}
                       data-instgrm-version="14"
-                      onClick={(e) => {
-                        e.currentTarget.classList.remove('hidden');
-                        if (typeof window !== 'undefined' && window.instgrm) {
-                          window.instgrm.Embeds.process();
-                        }
-                      }}
                       style={{
                         background: '#FFF',
                         border: '0',
@@ -134,6 +107,33 @@ const Reels = () => {
                         {reel.titleTA}
                       </a>
                     </blockquote>
+
+                    {/* Overlay with play button and instructions */}
+                    <div 
+                      className="absolute inset-0 bg-black/20 group-hover:bg-black/30 flex flex-col items-center justify-center transition-all cursor-pointer"
+                      onClick={() => {
+                        if (typeof window !== 'undefined' && window.instgrm) {
+                          window.instgrm.Embeds.process();
+                        }
+                      }}
+                    >
+                      {/* Play button */}
+                      <svg 
+                        className="w-20 h-20 text-white drop-shadow-xl mb-2 group-hover:scale-110 transition-transform" 
+                        fill="currentColor" 
+                        viewBox="0 0 24 24"
+                      >
+                        <path d="M8 5v14l11-7z" />
+                      </svg>
+                      
+                      {/* Text */}
+                      <p className="text-white font-semibold text-center text-sm drop-shadow-lg">
+                        Click to view
+                      </p>
+                      <p className="text-white/80 text-xs mt-1">
+                        Instagram Post
+                      </p>
+                    </div>
                   </div>
                 )}
                 <div className="p-4">
