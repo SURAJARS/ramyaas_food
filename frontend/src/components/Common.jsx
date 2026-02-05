@@ -8,11 +8,15 @@ import { snackApi } from '../utils/api';
 const getImageUrl = (imagePath) => {
   if (!imagePath) return '';
   
-  // Get API base URL and extract backend base URL
+  // If it's already a full URL (from Cloudinary), return as-is
+  if (imagePath.startsWith('http://') || imagePath.startsWith('https://')) {
+    return imagePath;
+  }
+  
+  // For legacy images, construct the full URL
   const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
   const backendUrl = apiUrl.replace('/api', '');
   
-  // Build full image URL
   return `${backendUrl}/uploads/images/${imagePath}`;
 };
 

@@ -14,7 +14,7 @@ export const createMenuImage = async (req, res) => {
     titleTA: req.body.titleTA,
     titleEN: req.body.titleEN,
     displayOrder: req.body.displayOrder || 0,
-    image: req.file ? req.file.filename : null
+    image: req.file ? req.file.path : null
   });
 
   try {
@@ -33,7 +33,7 @@ export const updateMenuImage = async (req, res) => {
     if (req.body.titleTA) image.titleTA = req.body.titleTA;
     if (req.body.titleEN) image.titleEN = req.body.titleEN;
     if (req.body.displayOrder !== undefined) image.displayOrder = req.body.displayOrder;
-    if (req.file) image.image = req.file.filename;
+    if (req.file) image.image = req.file.path;
 
     const updatedImage = await image.save();
     res.json(updatedImage);

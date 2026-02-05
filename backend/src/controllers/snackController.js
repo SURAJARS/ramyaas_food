@@ -31,7 +31,7 @@ export const createSnack = async (req, res) => {
     category: req.body.category,
     quantityUnit: req.body.quantityUnit || 'pieces',
     stock: req.body.stock || 100,
-    image: req.file ? req.file.filename : null
+    image: req.file ? req.file.path : null
   });
 
   try {
@@ -56,7 +56,7 @@ export const updateSnack = async (req, res) => {
     if (req.body.quantityUnit) snack.quantityUnit = req.body.quantityUnit;
     if (req.body.stock) snack.stock = req.body.stock;
     if (req.body.isEnabled !== undefined) snack.isEnabled = req.body.isEnabled;
-    if (req.file) snack.image = req.file.filename;
+    if (req.file) snack.image = req.file.path;
 
     const updatedSnack = await snack.save();
     res.json(updatedSnack);

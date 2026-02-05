@@ -6,6 +6,20 @@ import { reelsApi } from '../utils/api';
 
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
+// Helper function to get correct video URL
+const getVideoUrl = (videoPath) => {
+  if (!videoPath) return '';
+  
+  // If it's already a full URL (from Cloudinary), return as-is
+  if (videoPath.startsWith('http://') || videoPath.startsWith('https://')) {
+    return videoPath;
+  }
+  
+  // For legacy videos, construct the full URL
+  const backendUrl = API_BASE_URL.replace('/api', '');
+  return `${backendUrl}${videoPath}`;
+};
+
 const Reels = () => {
   const { language } = useLanguage();
   const [reels, setReels] = useState([]);
@@ -56,7 +70,7 @@ const Reels = () => {
               <div key={reel._id} className="bg-gray-50 rounded-lg overflow-hidden">
                 {reel.type === 'upload' && reel.videoFile && (
                   <video
-                    src={`${API_BASE_URL.replace('/api', '')}${reel.videoFile}`}
+                    src={getVideoUrl(reel.videoFile)}
                     className="w-full h-64 object-cover"
                     controls
                     controlsList="download"

@@ -7,6 +7,13 @@ import { gettext } from '../utils/translations';
 // Helper function to get correct image URL
 const getImageUrl = (imagePath) => {
   if (!imagePath) return '';
+  
+  // If it's already a full URL (from Cloudinary), return as-is
+  if (imagePath.startsWith('http://') || imagePath.startsWith('https://')) {
+    return imagePath;
+  }
+  
+  // For legacy images, construct the full URL
   const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
   const backendUrl = apiUrl.replace('/api', '');
   return `${backendUrl}/uploads/images/${imagePath}`;

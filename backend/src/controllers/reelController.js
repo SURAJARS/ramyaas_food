@@ -18,7 +18,7 @@ export const createReel = async (req, res) => {
     type: req.body.type,
     instagramLink: req.body.instagramLink,
     displayOrder: req.body.displayOrder || 0,
-    videoFile: req.file ? `/uploads/videos/${req.file.filename}` : null
+    videoFile: req.file ? req.file.path : null
   });
 
   try {
@@ -42,7 +42,7 @@ export const updateReel = async (req, res) => {
     if (req.body.instagramLink) reel.instagramLink = req.body.instagramLink;
     if (req.body.displayOrder !== undefined) reel.displayOrder = req.body.displayOrder;
     if (req.body.isVisible !== undefined) reel.isVisible = req.body.isVisible;
-    if (req.file) reel.videoFile = `/uploads/videos/${req.file.filename}`;
+    if (req.file) reel.videoFile = req.file.path;
 
     const updatedReel = await reel.save();
     res.json(updatedReel);
