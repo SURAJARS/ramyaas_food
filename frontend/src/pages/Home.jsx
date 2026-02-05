@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { gettext } from '../utils/translations';
+import logoImage from '../assets/logo.png';
 
 const Home = () => {
   const { language } = useLanguage();
@@ -76,8 +77,12 @@ const Home = () => {
                 : 'RAMYAAS prepares delicious homemade foods using traditional recipes. Our podi, pickle, and snacks are made with pure ingredients.'}
             </p>
           </div>
-          <div className="bg-ramyaas-100 h-96 rounded-lg flex items-center justify-center text-gray-400">
-            <span className="text-4xl">📸</span>
+          <div className="bg-ramyaas-100 h-96 rounded-lg flex items-center justify-center">
+            <img 
+              src={logoImage} 
+              alt="RAMYAAS Logo" 
+              className="h-48 w-auto"
+            />
           </div>
         </div>
       </section>
