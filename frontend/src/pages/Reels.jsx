@@ -86,37 +86,12 @@ const Reels = () => {
                   />
                 )}
                 {reel.type === 'instagram' && reel.instagramLink && (
-                  <div className="w-full h-64 bg-gradient-to-br from-pink-50 to-orange-50 flex items-center justify-center p-4 relative overflow-hidden group">
-                    <blockquote 
-                      className="instagram-media" 
-                      data-instgrm-permalink={reel.instagramLink}
-                      data-instgrm-version="14"
-                      style={{
-                        background: '#FFF',
-                        border: '0',
-                        borderRadius: '3px',
-                        boxShadow: '0 0 1px 0 rgba(0,0,0,0.5), 0 1px 10px 0 rgba(0,0,0,0.15)',
-                        margin: '1px',
-                        maxWidth: '100%',
-                        minWidth: '326px',
-                        padding: '0',
-                        width: '100%'
-                      }}
-                    >
-                      <a href={reel.instagramLink} target="_blank" rel="noopener noreferrer">
-                        {reel.titleTA}
-                      </a>
-                    </blockquote>
-
+                  <div 
+                    className="w-full h-64 bg-gradient-to-br from-pink-50 to-orange-50 flex items-center justify-center p-4 relative overflow-hidden group cursor-pointer"
+                    onClick={() => window.open(reel.instagramLink, '_blank')}
+                  >
                     {/* Overlay with play button and instructions */}
-                    <div 
-                      className="absolute inset-0 bg-black/20 group-hover:bg-black/30 flex flex-col items-center justify-center transition-all cursor-pointer"
-                      onClick={() => {
-                        if (typeof window !== 'undefined' && window.instgrm) {
-                          window.instgrm.Embeds.process();
-                        }
-                      }}
-                    >
+                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 flex flex-col items-center justify-center transition-all">
                       {/* Play button */}
                       <svg 
                         className="w-20 h-20 text-white drop-shadow-xl mb-2 group-hover:scale-110 transition-transform" 
