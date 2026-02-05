@@ -36,7 +36,7 @@ export const SnackCard = ({ snack }) => {
 
   const handleWhatsApp = () => {
     const message = `Hi, I'm interested in ${snack[language === 'ta' ? 'nameTA' : 'nameEN']}. Price: ₹${snack.price}`;
-    const whatsappUrl = `https://wa.me/918248125388?text=${encodeURIComponent(message)}`;
+    const whatsappUrl = `https://wa.me/919994952958?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
   };
 
