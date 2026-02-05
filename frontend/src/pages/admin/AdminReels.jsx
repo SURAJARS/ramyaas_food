@@ -44,22 +44,41 @@ const AdminReels = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    // Validation
+    if (!formData.titleTA || !formData.titleEN) {
+      setError('Title in both languages is required');
+      return;
+    }
+    
+    if (formData.type === 'upload' && !formData.video) {
+      setError('Please select a video file for upload type');
+      return;
+    }
+    
+    if (formData.type === 'instagram' && !formData.instagramLink) {
+      setError('Please enter Instagram link for Instagram type');
+      return;
+    }
+
     try {
       const data = new FormData();
       data.append('titleTA', formData.titleTA);
       data.append('titleEN', formData.titleEN);
-      data.append('descriptionTA', formData.descriptionTA);
-      data.append('descriptionEN', formData.descriptionEN);
+      data.append('descriptionTA', formData.descriptionTA || '');
+      data.append('descriptionEN', formData.descriptionEN || '');
       data.append('type', formData.type);
       data.append('displayOrder', formData.displayOrder);
+      
       if (formData.type === 'instagram') {
         data.append('instagramLink', formData.instagramLink);
-      } else if (formData.video instanceof File) {
+      } else if (formData.type === 'upload' && formData.video instanceof File) {
         data.append('video', formData.video);
       }
 
       await reelsApi.create(data);
       setSuccess(true);
+      setError(null);
       setFormData({
         titleTA: '',
         titleEN: '',
@@ -75,7 +94,7 @@ const AdminReels = () => {
     } catch (err) {
       const errorMessage = err.response?.data?.message || err.message || 'Failed to create reel';
       setError(errorMessage);
-      console.error(err);
+      console.error('Reel creation error:', err);
     }
   };
 
