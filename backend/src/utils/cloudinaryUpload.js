@@ -32,7 +32,7 @@ export const uploadToCloudinary = async (fileBuffer, fileName, folder) => {
     return {
       url: response.data.secure_url,
       publicId: response.data.public_id,
-      cloudinaryPath: response.data.public_id // For storing in DB
+      cloudinaryPath: response.data.secure_url // Store full Cloudinary URL in DB
     };
   } catch (error) {
     console.error('Cloudinary upload error:', error.response?.data || error.message);
