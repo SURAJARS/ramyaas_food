@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { gettext } from '../utils/translations';
 
@@ -16,18 +17,18 @@ const Home = () => {
           {gettext('tagline', language)}
         </p>
         <div className="flex gap-4 justify-center flex-wrap">
-          <a
-            href="/snacks"
+          <Link
+            to="/snacks"
             className="bg-ramyaas-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-ramyaas-700 transition-smooth"
           >
             {gettext('snacks', language)}
-          </a>
-          <a
-            href="/catering"
+          </Link>
+          <Link
+            to="/catering"
             className="bg-gray-200 text-gray-800 px-8 py-3 rounded-lg font-semibold hover:bg-gray-300 transition-smooth"
           >
             {gettext('catering', language)}
-          </a>
+          </Link>
         </div>
       </section>
 
