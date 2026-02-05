@@ -24,8 +24,6 @@ export const SnackCard = ({ snack }) => {
   const { addToCart } = useCart();
   const [quantity, setQuantity] = useState(1);
   const [imageError, setImageError] = useState(false);
-  const { addToCart } = useCart();
-  const [quantity, setQuantity] = useState(1);
 
   const handleAddToCart = () => {
     addToCart(snack, quantity);
