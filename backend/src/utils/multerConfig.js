@@ -11,18 +11,18 @@ cloudinary.config({
 const imageStorage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: {
+    upload_preset: 'ramyaas_unsigned',
     folder: 'ramyaas_food/images',
-    resource_type: 'auto',
-    allowed_formats: ['jpeg', 'jpg', 'png', 'webp']
+    resource_type: 'auto'
   }
 });
 
 const videoStorage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: {
+    upload_preset: 'ramyaas_unsigned',
     folder: 'ramyaas_food/videos',
-    resource_type: 'video',
-    allowed_formats: ['mp4', 'avi', 'mov', 'webm']
+    resource_type: 'video'
   }
 });
 
