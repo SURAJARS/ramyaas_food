@@ -28,5 +28,3 @@ export const uploadVideo = multer({
     cb(new Error('Only video files are allowed'));
   }
 });
-
-export { cloudinary };
