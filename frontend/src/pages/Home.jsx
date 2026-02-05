@@ -1,44 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { gettext } from '../utils/translations';
-import { LoadingSpinner } from '../components/Common';
-import { snackApi, cateringApi, bulkOrderApi, enquiryApi } from '../utils/api';
 
 const Home = () => {
   const { language } = useLanguage();
-  const [stats, setStats] = useState({
-    snacks: 0,
-    catering: 0,
-    bulkOrders: 0,
-    enquiries: 0
-  });
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchStats = async () => {
-      try {
-        const [snacksRes, cateringRes, bulkRes, enquiriesRes] = await Promise.all([
-          snackApi.getAll(),
-          cateringApi.getAll(),
-          bulkOrderApi.getAll(),
-          enquiryApi.getAll()
-        ]);
-
-        setStats({
-          snacks: snacksRes.data.length,
-          catering: cateringRes.data.length,
-          bulkOrders: bulkRes.data.length,
-          enquiries: enquiriesRes.data.length
-        });
-      } catch (error) {
-        console.error('Error fetching stats:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchStats();
-  }, []);
 
   return (
     <div className="min-h-screen bg-white">
@@ -67,30 +32,32 @@ const Home = () => {
       </section>
 
       {/* Stats Section */}
-      {!loading && (
-        <section className="bg-ramyaas-50 py-16">
-          <div className="max-w-7xl mx-auto px-4">
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-              <div className="bg-white rounded-lg p-6 text-center border border-ramyaas-100">
-                <div className="text-4xl font-bold text-ramyaas-600 mb-2">{stats.snacks}</div>
-                <p className="text-gray-600">{gettext('snacks', language)}</p>
-              </div>
-              <div className="bg-white rounded-lg p-6 text-center border border-ramyaas-100">
-                <div className="text-4xl font-bold text-ramyaas-600 mb-2">{stats.catering}</div>
-                <p className="text-gray-600">{gettext('cateringOrders', language)}</p>
-              </div>
-              <div className="bg-white rounded-lg p-6 text-center border border-ramyaas-100">
-                <div className="text-4xl font-bold text-ramyaas-600 mb-2">{stats.bulkOrders}</div>
-                <p className="text-gray-600">{gettext('bulkOrders', language)}</p>
-              </div>
-              <div className="bg-white rounded-lg p-6 text-center border border-ramyaas-100">
-                <div className="text-4xl font-bold text-ramyaas-600 mb-2">{stats.enquiries}</div>
-                <p className="text-gray-600">{gettext('inquiries', language)}</p>
-              </div>
+      <section className="bg-ramyaas-50 py-16">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+            <div className="bg-white rounded-lg p-6 text-center border border-ramyaas-100">
+              <div className="text-4xl font-bold text-ramyaas-600 mb-2">🎉</div>
+              <p className="text-gray-600 font-semibold">100% Homemade Quality</p>
+              <p className="text-sm text-gray-500 mt-1">Fresh & Pure</p>
+            </div>
+            <div className="bg-white rounded-lg p-6 text-center border border-ramyaas-100">
+              <div className="text-4xl font-bold text-ramyaas-600 mb-2">⭐</div>
+              <p className="text-gray-600 font-semibold">500+ Happy Customers</p>
+              <p className="text-sm text-gray-500 mt-1">Trusted Since 2023</p>
+            </div>
+            <div className="bg-white rounded-lg p-6 text-center border border-ramyaas-100">
+              <div className="text-4xl font-bold text-ramyaas-600 mb-2">🚚</div>
+              <p className="text-gray-600 font-semibold">Fast Delivery</p>
+              <p className="text-sm text-gray-500 mt-1">Within 24 Hours</p>
+            </div>
+            <div className="bg-white rounded-lg p-6 text-center border border-ramyaas-100">
+              <div className="text-4xl font-bold text-ramyaas-600 mb-2">💚</div>
+              <p className="text-gray-600 font-semibold">Made With Love</p>
+              <p className="text-sm text-gray-500 mt-1">For Your Family</p>
             </div>
           </div>
-        </section>
-      )}
+        </div>
+      </section>
 
       {/* About Section */}
       <section className="max-w-7xl mx-auto px-4 py-20">
