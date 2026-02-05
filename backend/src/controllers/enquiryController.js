@@ -1,5 +1,5 @@
 import Enquiry from '../models/Enquiry.js';
-import { sendContactEnquiryEmail } from '../utils/emailService.js';
+// Email service removed - form submissions logged to admin dashboard instead
 
 export const getAllEnquiries = async (req, res) => {
   try {
@@ -33,13 +33,18 @@ export const createEnquiry = async (req, res) => {
 
     const newEnquiry = await enquiry.save();
     
-    // Send email notification
-    try {
-      await sendContactEnquiryEmail(newEnquiry);
-    } catch (emailError) {
-      console.error('Email sending failed:', emailError.message);
-      // Don't fail the request if email fails
-    }
+    // Log form submission to admin dashboard
+    console.log('💬 Contact Enquiry Submitted:', {
+      id: newEnquiry._id,
+      name: newEnquiry.name,
+      email: newEnquiry.email,
+      phone: newEnquiry.phone,
+      type: newEnquiry.type,
+      timestamp: new Date().toISOString()
+    });
+    
+    // Email sending disabled - form data is logged to admin dashboard
+    // Admin can view all submissions in Admin > Orders section
     
     res.status(201).json(newEnquiry);
   } catch (error) {

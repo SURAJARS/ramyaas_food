@@ -1,5 +1,5 @@
 import BulkOrder from '../models/BulkOrder.js';
-import { sendBulkOrderEmail } from '../utils/emailService.js';
+// Email service removed - form submissions logged to admin dashboard instead
 
 export const getAllBulkOrders = async (req, res) => {
   try {
@@ -42,13 +42,19 @@ export const createBulkOrder = async (req, res) => {
 
     const newOrder = await order.save();
     
-    // Send email notification
-    try {
-      await sendBulkOrderEmail(newOrder);
-    } catch (emailError) {
-      console.error('Email sending failed:', emailError.message);
-      // Don't fail the request if email fails
-    }
+    // Log form submission to admin dashboard
+    console.log('📦 Bulk Order Submitted:', {
+      id: newOrder._id,
+      name: newOrder.name,
+      email: newOrder.email,
+      phone: newOrder.phone,
+      item: newOrder.item,
+      quantity: newOrder.quantity,
+      timestamp: new Date().toISOString()
+    });
+    
+    // Email sending disabled - form data is logged to admin dashboard
+    // Admin can view all submissions in Admin > Orders section
     
     res.status(201).json(newOrder);
   } catch (error) {

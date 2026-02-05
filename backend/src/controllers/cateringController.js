@@ -1,5 +1,5 @@
 import CateringOrder from '../models/CateringOrder.js';
-import { sendCateringEnquiryEmail } from '../utils/emailService.js';
+// Email service removed - form submissions logged to admin dashboard instead
 
 export const getAllCateringOrders = async (req, res) => {
   try {
@@ -41,13 +41,19 @@ export const createCateringOrder = async (req, res) => {
 
     const newOrder = await order.save();
     
-    // Send email notification
-    try {
-      await sendCateringEnquiryEmail(newOrder);
-    } catch (emailError) {
-      console.error('Email sending failed:', emailError.message);
-      // Don't fail the request if email fails
-    }
+    // Log form submission to admin dashboard
+    console.log('📋 Catering Order Submitted:', {
+      id: newOrder._id,
+      name: newOrder.name,
+      email: newOrder.email,
+      phone: newOrder.phone,
+      eventDate: newOrder.eventDate,
+      guestCount: newOrder.guestCount,
+      timestamp: new Date().toISOString()
+    });
+    
+    // Email sending disabled - form data is logged to admin dashboard
+    // Admin can view all submissions in Admin > Orders section
     
     res.status(201).json(newOrder);
   } catch (error) {
