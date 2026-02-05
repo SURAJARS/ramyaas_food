@@ -1,4 +1,5 @@
 import ReelContent from '../models/ReelContent.js';
+import { uploadToCloudinary } from '../utils/cloudinaryUpload.js';
 
 export const getAllReels = async (req, res) => {
   try {
@@ -10,18 +11,30 @@ export const getAllReels = async (req, res) => {
 };
 
 export const createReel = async (req, res) => {
-  const reel = new ReelContent({
-    titleTA: req.body.titleTA,
-    titleEN: req.body.titleEN,
-    descriptionTA: req.body.descriptionTA,
-    descriptionEN: req.body.descriptionEN,
-    type: req.body.type,
-    instagramLink: req.body.instagramLink,
-    displayOrder: req.body.displayOrder || 0,
-    videoFile: req.file ? req.file.path : null
-  });
-
   try {
+    let videoUrl = null;
+    
+    // Upload video to Cloudinary if provided
+    if (req.file) {
+      const cloudinaryData = await uploadToCloudinary(
+        req.file.buffer,
+        req.file.originalname,
+        'ramyaas_food/videos'
+      );
+      videoUrl = cloudinaryData.cloudinaryPath;
+    }
+
+    const reel = new ReelContent({
+      titleTA: req.body.titleTA,
+      titleEN: req.body.titleEN,
+      descriptionTA: req.body.descriptionTA,
+      descriptionEN: req.body.descriptionEN,
+      type: req.body.type,
+      instagramLink: req.body.instagramLink,
+      displayOrder: req.body.displayOrder || 0,
+      videoFile: videoUrl
+    });
+
     const newReel = await reel.save();
     res.status(201).json(newReel);
   } catch (error) {
@@ -42,7 +55,16 @@ export const updateReel = async (req, res) => {
     if (req.body.instagramLink) reel.instagramLink = req.body.instagramLink;
     if (req.body.displayOrder !== undefined) reel.displayOrder = req.body.displayOrder;
     if (req.body.isVisible !== undefined) reel.isVisible = req.body.isVisible;
-    if (req.file) reel.videoFile = req.file.path;
+    
+    // Upload new video to Cloudinary if provided
+    if (req.file) {
+      const cloudinaryData = await uploadToCloudinary(
+        req.file.buffer,
+        req.file.originalname,
+        'ramyaas_food/videos'
+      );
+      reel.videoFile = cloudinaryData.cloudinaryPath;
+    }
 
     const updatedReel = await reel.save();
     res.json(updatedReel);

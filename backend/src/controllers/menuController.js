@@ -1,4 +1,5 @@
 import MenuImage from '../models/MenuImage.js';
+import { uploadToCloudinary } from '../utils/cloudinaryUpload.js';
 
 export const getAllMenuImages = async (req, res) => {
   try {
@@ -10,14 +11,26 @@ export const getAllMenuImages = async (req, res) => {
 };
 
 export const createMenuImage = async (req, res) => {
-  const image = new MenuImage({
-    titleTA: req.body.titleTA,
-    titleEN: req.body.titleEN,
-    displayOrder: req.body.displayOrder || 0,
-    image: req.file ? req.file.path : null
-  });
-
   try {
+    let imageUrl = null;
+    
+    // Upload image to Cloudinary if provided
+    if (req.file) {
+      const cloudinaryData = await uploadToCloudinary(
+        req.file.buffer,
+        req.file.originalname,
+        'ramyaas_food/images'
+      );
+      imageUrl = cloudinaryData.cloudinaryPath;
+    }
+
+    const image = new MenuImage({
+      titleTA: req.body.titleTA,
+      titleEN: req.body.titleEN,
+      displayOrder: req.body.displayOrder || 0,
+      image: imageUrl
+    });
+
     const newImage = await image.save();
     res.status(201).json(newImage);
   } catch (error) {
@@ -33,7 +46,16 @@ export const updateMenuImage = async (req, res) => {
     if (req.body.titleTA) image.titleTA = req.body.titleTA;
     if (req.body.titleEN) image.titleEN = req.body.titleEN;
     if (req.body.displayOrder !== undefined) image.displayOrder = req.body.displayOrder;
-    if (req.file) image.image = req.file.path;
+    
+    // Upload new image to Cloudinary if provided
+    if (req.file) {
+      const cloudinaryData = await uploadToCloudinary(
+        req.file.buffer,
+        req.file.originalname,
+        'ramyaas_food/images'
+      );
+      image.image = cloudinaryData.cloudinaryPath;
+    }
 
     const updatedImage = await image.save();
     res.json(updatedImage);

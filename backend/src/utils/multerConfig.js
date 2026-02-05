@@ -1,33 +1,10 @@
 import multer from 'multer';
-import { CloudinaryStorage } from 'multer-storage-cloudinary';
-import { v2 as cloudinary } from 'cloudinary';
 
-cloudinary.config({
-  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET
-});
-
-const imageStorage = new CloudinaryStorage({
-  cloudinary: cloudinary,
-  params: {
-    upload_preset: 'ramyaas_unsigned',
-    folder: 'ramyaas_food/images',
-    resource_type: 'auto'
-  }
-});
-
-const videoStorage = new CloudinaryStorage({
-  cloudinary: cloudinary,
-  params: {
-    upload_preset: 'ramyaas_unsigned',
-    folder: 'ramyaas_food/videos',
-    resource_type: 'video'
-  }
-});
+// Use memory storage - we'll upload to Cloudinary from the controller
+const memoryStorage = multer.memoryStorage();
 
 export const uploadImage = multer({
-  storage: imageStorage,
+  storage: memoryStorage,
   limits: { fileSize: 5 * 1024 * 1024 },
   fileFilter: (req, file, cb) => {
     const filetypes = /jpeg|jpg|png|webp/;
@@ -40,7 +17,7 @@ export const uploadImage = multer({
 });
 
 export const uploadVideo = multer({
-  storage: videoStorage,
+  storage: memoryStorage,
   limits: { fileSize: 100 * 1024 * 1024 },
   fileFilter: (req, file, cb) => {
     const filetypes = /mp4|avi|mov|webm/;
