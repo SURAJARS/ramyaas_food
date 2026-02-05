@@ -16,8 +16,14 @@ const getImageUrl = (imagePath) => {
   return `${backendUrl}/uploads/images/${imagePath}`;
 };
 
+// Placeholder image - nice gradient with food emoji
+const PLACEHOLDER_IMAGE = 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22400%22%3E%3Cdefs%3E%3ClinearGradient id=%22grad%22 x1=%220%25%22 y1=%220%25%22 x2=%22100%25%22 y2=%22100%25%22%3E%3Cstop offset=%220%25%22 style=%22stop-color:%23FFE5B4;stop-opacity:1%22 /%3E%3Cstop offset=%22100%25%22 style=%22stop-color:%23FFD699;stop-opacity:1%22 /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect fill=%22url(%23grad)%22 width=%22400%22 height=%22400%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 font-size=%22120%22 text-anchor=%22middle%22 dy=%22.3em%22%3E🍪%3C/text%3E%3C/svg%3E';
+
 export const SnackCard = ({ snack }) => {
   const { language } = useLanguage();
+  const { addToCart } = useCart();
+  const [quantity, setQuantity] = useState(1);
+  const [imageError, setImageError] = useState(false);
   const { addToCart } = useCart();
   const [quantity, setQuantity] = useState(1);
 
@@ -34,16 +40,14 @@ export const SnackCard = ({ snack }) => {
 
   return (
     <div className="bg-white rounded-lg overflow-hidden border border-gray-100 hover:shadow-lg transition-smooth">
-      {snack.image && (
+      <div className="w-full h-64 bg-gradient-to-br from-orange-100 to-orange-50 flex items-center justify-center overflow-hidden">
         <img
-          src={getImageUrl(snack.image)}
+          src={imageError ? PLACEHOLDER_IMAGE : getImageUrl(snack.image)}
           alt={snack[language === 'ta' ? 'nameTA' : 'nameEN']}
-          className="w-full h-63object-cover"
-          onError={(e) => {
-            e.target.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="200" height="200"%3E%3Crect fill="%23ddd" width="200" height="200"/%3E%3Ctext x="50%25" y="50%25" text-anchor="middle" dy=".3em" fill="%23999" font-size="14"%3EImage not found%3C/text%3E%3C/svg%3E';
-          }}
+          className="w-full h-full object-cover"
+          onError={() => setImageError(true)}
         />
-      )}
+      </div>
       <div className="p-4">
         <h3 className="font-semibold text-gray-800 mb-1">
           {snack[language === 'ta' ? 'nameTA' : 'nameEN']}

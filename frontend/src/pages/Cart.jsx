@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { useCart } from '../context/CartContext';
@@ -12,9 +12,13 @@ const getImageUrl = (imagePath) => {
   return `${backendUrl}/uploads/images/${imagePath}`;
 };
 
+// Placeholder image
+const PLACEHOLDER_IMAGE = 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22200%22%3E%3Cdefs%3E%3ClinearGradient id=%22grad%22 x1=%220%25%22 y1=%220%25%22 x2=%22100%25%22 y2=%22100%25%22%3E%3Cstop offset=%220%25%22 style=%22stop-color:%23FFE5B4;stop-opacity:1%22 /%3E%3Cstop offset=%22100%25%22 style=%22stop-color:%23FFD699;stop-opacity:1%22 /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect fill=%22url(%23grad)%22 width=%22200%22 height=%22200%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 font-size=%2260%22 text-anchor=%22middle%22 dy=%22.3em%22%3E🍪%3C/text%3E%3C/svg%3E';
+
 const Cart = () => {
   const { language } = useLanguage();
   const { cartItems, removeFromCart, updateQuantity, getTotalPrice, getTotalItems } = useCart();
+  const [imageErrors, setImageErrors] = useState({});
 
   if (cartItems.length === 0) {
     return (
@@ -53,11 +57,12 @@ const Cart = () => {
               {cartItems.map(item => (
                 <div key={item._id} className="p-6 border-b border-gray-200 last:border-b-0 flex gap-4">
                   {/* Product Image */}
-                  <div className="w-24 h-24 flex-shrink-0">
+                  <div className="w-24 h-24 flex-shrink-0 bg-gradient-to-br from-orange-100 to-orange-50 rounded-lg flex items-center justify-center">
                     <img
-                    src={getImageUrl(item.image)}
+                      src={imageErrors[item._id] ? PLACEHOLDER_IMAGE : getImageUrl(item.image)}
                       alt={item[language === 'ta' ? 'nameTA' : 'nameEN']}
                       className="w-full h-full object-cover rounded-lg"
+                      onError={() => setImageErrors(prev => ({ ...prev, [item._id]: true }))}
                     />
                   </div>
 

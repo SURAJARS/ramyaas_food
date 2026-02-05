@@ -10,11 +10,15 @@ const getImageUrl = (imagePath) => {
   return `${backendUrl}/uploads/images/${imagePath}`;
 };
 
+// Placeholder image
+const PLACEHOLDER_IMAGE = 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22300%22%3E%3Cdefs%3E%3ClinearGradient id=%22grad%22 x1=%220%25%22 y1=%220%25%22 x2=%22100%25%22 y2=%22100%25%22%3E%3Cstop offset=%220%25%22 style=%22stop-color:%23FFE5B4;stop-opacity:1%22 /%3E%3Cstop offset=%22100%25%22 style=%22stop-color:%23FFD699;stop-opacity:1%22 /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect fill=%22url(%23grad)%22 width=%22300%22 height=%22300%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 font-size=%2280%22 text-anchor=%22middle%22 dy=%22.3em%22%3E🍛%3C/text%3E%3C/svg%3E';
+
 const AdminMenu = () => {
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
+  const [imageErrors, setImageErrors] = useState({});
   const [formData, setFormData] = useState({
     titleTA: '',
     titleEN: '',
@@ -135,7 +139,14 @@ const AdminMenu = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {images.map(image => (
             <div key={image._id} className="bg-white p-4 rounded-lg border border-gray-200">
-              <img src={getImageUrl(image.image)} alt={image.titleTA} className="w-full h-72 object-cover rounded mb-4" />
+              <div className="w-full h-72 bg-gradient-to-br from-orange-100 to-orange-50 rounded mb-4 flex items-center justify-center overflow-hidden">
+                <img 
+                  src={imageErrors[image._id] ? PLACEHOLDER_IMAGE : getImageUrl(image.image)} 
+                  alt={image.titleTA} 
+                  className="w-full h-full object-cover"
+                  onError={() => setImageErrors(prev => ({ ...prev, [image._id]: true }))}
+                />
+              </div>
               <h3 className="font-semibold text-gray-800 mb-2">{image.titleTA}</h3>
               <button
                 onClick={() => handleDelete(image._id)}
