@@ -42,6 +42,13 @@ const Reels = () => {
     fetchReels();
   }, []);
 
+  useEffect(() => {
+    // Load Instagram embed script when reels change
+    if (typeof window !== 'undefined' && window.instgrm) {
+      window.instgrm.Embeds.process();
+    }
+  }, [reels]);
+
   const extractInstagramId = (url) => {
     const match = url?.match(/(?:instagram\.com\/(?:p|reel|tv)\/|instagram\.com\/tv\/|youtu\.be\/|youtube\.com\/watch\?v=)([^\/?]+)/);
     return match ? match[1] : null;
@@ -79,12 +86,27 @@ const Reels = () => {
                   />
                 )}
                 {reel.type === 'instagram' && reel.instagramLink && (
-                  <div className="w-full h-64 bg-gray-200 flex items-center justify-center">
-                    <iframe
-                      title={reel.titleTA}
-                      src={`https://www.instagram.com/embed.js`}
-                      className="w-full h-full"
-                    />
+                  <div className="w-full h-64 bg-gray-900 flex items-center justify-center p-4">
+                    <blockquote 
+                      className="instagram-media" 
+                      data-instgrm-permalink={reel.instagramLink}
+                      data-instgrm-version="14"
+                      style={{
+                        background: '#FFF',
+                        border: '0',
+                        borderRadius: '3px',
+                        boxShadow: '0 0 1px 0 rgba(0,0,0,0.5), 0 1px 10px 0 rgba(0,0,0,0.15)',
+                        margin: '1px',
+                        maxWidth: '300px',
+                        minWidth: '326px',
+                        padding: '0',
+                        width: '100%'
+                      }}
+                    >
+                      <a href={reel.instagramLink} target="_blank" rel="noopener noreferrer">
+                        {reel.titleTA}
+                      </a>
+                    </blockquote>
                   </div>
                 )}
                 <div className="p-4">
