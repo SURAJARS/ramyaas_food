@@ -36,16 +36,20 @@ export const createSnack = async (req, res) => {
       imageUrl = cloudinaryData.cloudinaryPath;
     }
 
+    // Validate variants
+    if (!req.body.variants || !Array.isArray(req.body.variants) || req.body.variants.length === 0) {
+      return res.status(400).json({ message: 'At least one variant is required' });
+    }
+
     const snack = new SnackItem({
       nameTA: req.body.nameTA,
       nameEN: req.body.nameEN,
       descriptionTA: req.body.descriptionTA,
       descriptionEN: req.body.descriptionEN,
-      price: req.body.price,
+      variants: req.body.variants, // Array of { quantity, price }
       category: req.body.category,
-      quantityUnit: req.body.quantityUnit || 'pieces',
-      stock: req.body.stock || 100,
-      image: imageUrl
+      image: imageUrl,
+      isEnabled: req.body.isEnabled !== undefined ? req.body.isEnabled : true
     });
 
     const newSnack = await snack.save();
@@ -64,11 +68,16 @@ export const updateSnack = async (req, res) => {
     if (req.body.nameEN) snack.nameEN = req.body.nameEN;
     if (req.body.descriptionTA) snack.descriptionTA = req.body.descriptionTA;
     if (req.body.descriptionEN) snack.descriptionEN = req.body.descriptionEN;
-    if (req.body.price) snack.price = req.body.price;
     if (req.body.category) snack.category = req.body.category;
-    if (req.body.quantityUnit) snack.quantityUnit = req.body.quantityUnit;
-    if (req.body.stock) snack.stock = req.body.stock;
     if (req.body.isEnabled !== undefined) snack.isEnabled = req.body.isEnabled;
+    
+    // Update variants
+    if (req.body.variants && Array.isArray(req.body.variants)) {
+      if (req.body.variants.length === 0) {
+        return res.status(400).json({ message: 'At least one variant is required' });
+      }
+      snack.variants = req.body.variants;
+    }
     
     // Upload new image to Cloudinary if provided
     if (req.file) {
@@ -80,6 +89,7 @@ export const updateSnack = async (req, res) => {
       snack.image = cloudinaryData.cloudinaryPath;
     }
 
+    snack.updatedAt = new Date();
     const updatedSnack = await snack.save();
     res.json(updatedSnack);
   } catch (error) {

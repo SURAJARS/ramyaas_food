@@ -26,16 +26,26 @@ const PLACEHOLDER_IMAGE = 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/
 export const SnackCard = ({ snack }) => {
   const { language } = useLanguage();
   const { addToCart } = useCart();
+  const [selectedVariant, setSelectedVariant] = useState(snack.variants?.[0] || null);
   const [quantity, setQuantity] = useState(1);
   const [imageError, setImageError] = useState(false);
 
   const handleAddToCart = () => {
-    addToCart(snack, quantity);
-    setQuantity(1);
+    if (selectedVariant) {
+      addToCart({
+        ...snack,
+        selectedVariant: selectedVariant,
+        price: selectedVariant.price
+      }, quantity);
+      setQuantity(1);
+    }
   };
 
   const handleWhatsApp = () => {
-    const message = `Hi, I'm interested in ${snack[language === 'ta' ? 'nameTA' : 'nameEN']}. Price: ₹${snack.price}`;
+    const snackName = snack[language === 'ta' ? 'nameTA' : 'nameEN'];
+    const variantQty = selectedVariant?.quantity || '';
+    const price = selectedVariant?.price || snack.price;
+    const message = `Hi, I'm interested in ${snackName} (${variantQty}). Price: ₹${price}`;
     const whatsappUrl = `https://wa.me/919994952958?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
   };
@@ -54,17 +64,39 @@ export const SnackCard = ({ snack }) => {
         <h3 className="font-semibold text-gray-800 mb-1">
           {snack[language === 'ta' ? 'nameTA' : 'nameEN']}
         </h3>
-        <p className="text-xs text-gray-500 mb-2">
-          {snack.quantityUnit}
-        </p>
         {snack[language === 'ta' ? 'descriptionTA' : 'descriptionEN'] && (
           <p className="text-sm text-gray-600 mb-3">
             {snack[language === 'ta' ? 'descriptionTA' : 'descriptionEN']}
           </p>
         )}
+
+        {/* Variant Selection */}
+        {snack.variants && snack.variants.length > 0 && (
+          <div className="mb-3">
+            <label className="text-xs font-medium text-gray-600 mb-2 block">
+              {language === 'ta' ? 'அளவு' : 'Size'}
+            </label>
+            <select
+              value={selectedVariant?.quantity || ''}
+              onChange={(e) => {
+                const variant = snack.variants.find(v => v.quantity === e.target.value);
+                setSelectedVariant(variant);
+              }}
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-ramyaas-500"
+            >
+              {snack.variants.map((variant, idx) => (
+                <option key={idx} value={variant.quantity}>
+                  {variant.quantity} - ₹{variant.price}
+                </option>
+              ))}
+            </select>
+          </div>
+        )}
+
         <div className="flex justify-between items-center mb-3">
-          <span className="text-lg font-bold text-ramyaas-600">₹{snack.price}</span>
-          <span className="text-xs text-gray-500">Stock: {snack.stock}</span>
+          <span className="text-lg font-bold text-ramyaas-600">
+            ₹{selectedVariant?.price || snack.price}
+          </span>
         </div>
         
         {/* Quantity and Buttons */}
@@ -81,11 +113,10 @@ export const SnackCard = ({ snack }) => {
               value={quantity}
               onChange={(e) => setQuantity(Math.max(1, parseInt(e.target.value) || 1))}
               min="1"
-              max={snack.stock}
               className="w-12 text-center border border-gray-300 rounded py-1 text-sm"
             />
             <button
-              onClick={() => setQuantity(Math.min(snack.stock, quantity + 1))}
+              onClick={() => setQuantity(quantity + 1)}
               className="bg-gray-200 text-gray-700 px-2 py-1 rounded text-sm hover:bg-gray-300"
             >
               +

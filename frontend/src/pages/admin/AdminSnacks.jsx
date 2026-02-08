@@ -16,10 +16,8 @@ const AdminSnacks = () => {
     nameEN: '',
     descriptionTA: '',
     descriptionEN: '',
-    price: '',
+    variants: [{ quantity: '250g', price: '' }],
     category: 'snacks',
-    quantityUnit: 'pieces',
-    stock: 100,
     image: null,
     isEnabled: true
   });
@@ -47,6 +45,35 @@ const AdminSnacks = () => {
     });
   };
 
+  const handleVariantChange = (index, field, value) => {
+    const newVariants = [...formData.variants];
+    newVariants[index] = {
+      ...newVariants[index],
+      [field]: field === 'price' ? parseFloat(value) || '' : value
+    };
+    setFormData({
+      ...formData,
+      variants: newVariants
+    });
+  };
+
+  const addVariant = () => {
+    setFormData({
+      ...formData,
+      variants: [...formData.variants, { quantity: '', price: '' }]
+    });
+  };
+
+  const removeVariant = (index) => {
+    if (formData.variants.length > 1) {
+      const newVariants = formData.variants.filter((_, i) => i !== index);
+      setFormData({
+        ...formData,
+        variants: newVariants
+      });
+    }
+  };
+
   const handleFileChange = (e) => {
     setFormData({
       ...formData,
@@ -57,15 +84,21 @@ const AdminSnacks = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      // Validate variants
+      for (let variant of formData.variants) {
+        if (!variant.quantity || !variant.price) {
+          setError('All variants must have quantity and price');
+          return;
+        }
+      }
+
       const data = new FormData();
       data.append('nameTA', formData.nameTA);
       data.append('nameEN', formData.nameEN);
       data.append('descriptionTA', formData.descriptionTA);
       data.append('descriptionEN', formData.descriptionEN);
-      data.append('price', parseFloat(formData.price));
+      data.append('variants', JSON.stringify(formData.variants));
       data.append('category', formData.category);
-      data.append('quantityUnit', formData.quantityUnit);
-      data.append('stock', parseInt(formData.stock));
       data.append('isEnabled', formData.isEnabled);
       if (formData.image instanceof File) {
         data.append('image', formData.image);
@@ -83,10 +116,8 @@ const AdminSnacks = () => {
         nameEN: '',
         descriptionTA: '',
         descriptionEN: '',
-        price: '',
+        variants: [{ quantity: '250g', price: '' }],
         category: 'snacks',
-        quantityUnit: 'pieces',
-        stock: 100,
         image: null,
         isEnabled: true
       });
@@ -120,13 +151,21 @@ const AdminSnacks = () => {
       nameEN: snack.nameEN,
       descriptionTA: snack.descriptionTA,
       descriptionEN: snack.descriptionEN,
-      price: snack.price,
+      variants: snack.variants || [{ quantity: '250g', price: '' }],
       category: snack.category,
-      quantityUnit: snack.quantityUnit,
-      stock: snack.stock,
       isEnabled: snack.isEnabled,
       image: null
     });
+  };
+
+  const getMinPrice = (snack) => {
+    if (!snack.variants || snack.variants.length === 0) return 'N/A';
+    return Math.min(...snack.variants.map(v => v.price));
+  };
+
+  const getVariantsDisplay = (snack) => {
+    if (!snack.variants || snack.variants.length === 0) return 'No variants';
+    return snack.variants.map(v => `${v.quantity} - ₹${v.price}`).join(', ');
   };
 
   return (
@@ -153,72 +192,89 @@ const AdminSnacks = () => {
             placeholder="Name (English)"
             value={formData.nameEN}
             onChange={handleChange}
-            className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-ramyaas-500"
-          />
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <input
-            type="number"
-            name="price"
-            placeholder="Price"
-            value={formData.price}
-            onChange={handleChange}
             required
             className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-ramyaas-500"
           />
-          <select
-            name="category"
-            value={formData.category}
-            onChange={handleChange}
-            className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-ramyaas-500"
-          >
-            <option value="snacks">Snacks</option>
-            <option value="podi">Podi</option>
-            <option value="pickle">Pickle</option>
-            <option value="sweets">Sweets</option>
-          </select>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <select
-            name="quantityUnit"
-            value={formData.quantityUnit}
+          <textarea
+            name="descriptionTA"
+            placeholder="Description (Tamil)"
+            value={formData.descriptionTA}
             onChange={handleChange}
-            className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-ramyaas-500"
-          >
-            <option value="pieces">Pieces</option>
-            <option value="grams">Grams</option>
-            <option value="kgs">Kilograms</option>
-            <option value="litre">Litre</option>
-          </select>
-          <input
-            type="number"
-            name="stock"
-            placeholder="Stock quantity"
-            value={formData.stock}
+            rows="2"
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-ramyaas-500"
+          ></textarea>
+
+          <textarea
+            name="descriptionEN"
+            placeholder="Description (English)"
+            value={formData.descriptionEN}
             onChange={handleChange}
-            className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-ramyaas-500"
-          />
+            rows="2"
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-ramyaas-500"
+          ></textarea>
         </div>
 
-        <textarea
-          name="descriptionTA"
-          placeholder="Description (Tamil)"
-          value={formData.descriptionTA}
+        <select
+          name="category"
+          value={formData.category}
           onChange={handleChange}
-          rows="2"
           className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-ramyaas-500"
-        ></textarea>
+        >
+          <option value="snacks">Snacks</option>
+          <option value="podi">Podi</option>
+          <option value="pickle">Pickle</option>
+          <option value="sweets">Sweets</option>
+        </select>
 
-        <textarea
-          name="descriptionEN"
-          placeholder="Description (English)"
-          value={formData.descriptionEN}
-          onChange={handleChange}
-          rows="2"
-          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-ramyaas-500"
-        ></textarea>
+        {/* Variants Section */}
+        <div className="border-t pt-4">
+          <h3 className="text-lg font-semibold text-ramyaas-700 mb-3">Variants</h3>
+          <div className="space-y-3 mb-3">
+            {formData.variants.map((variant, index) => (
+              <div key={index} className="flex gap-2 items-end">
+                <div className="flex-1">
+                  <label className="block text-xs font-medium text-gray-600 mb-1">Quantity</label>
+                  <input
+                    type="text"
+                    placeholder="e.g., 250g, 500g, 1kg"
+                    value={variant.quantity}
+                    onChange={(e) => handleVariantChange(index, 'quantity', e.target.value)}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-ramyaas-500 text-sm"
+                  />
+                </div>
+                <div className="flex-1">
+                  <label className="block text-xs font-medium text-gray-600 mb-1">Price</label>
+                  <input
+                    type="number"
+                    placeholder="Price"
+                    value={variant.price}
+                    onChange={(e) => handleVariantChange(index, 'price', e.target.value)}
+                    step="0.01"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-ramyaas-500 text-sm"
+                  />
+                </div>
+                <button
+                  type="button"
+                  onClick={() => removeVariant(index)}
+                  disabled={formData.variants.length === 1}
+                  className="px-3 py-2 bg-red-500 text-white rounded-lg text-sm hover:bg-red-600 disabled:bg-gray-300"
+                >
+                  Remove
+                </button>
+              </div>
+            ))}
+          </div>
+          <button
+            type="button"
+            onClick={addVariant}
+            className="px-4 py-2 bg-blue-500 text-white rounded-lg text-sm hover:bg-blue-600"
+          >
+            + Add Variant
+          </button>
+        </div>
 
         <input
           type="file"
@@ -249,12 +305,13 @@ const AdminSnacks = () => {
       {loading ? (
         <LoadingSpinner />
       ) : (
-        <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
+        <div className="bg-white rounded-lg border border-gray-200 overflow-x-auto">
           <table className="w-full">
             <thead className="bg-gray-50 border-b">
               <tr>
                 <th className="px-6 py-3 text-left text-sm font-semibold">Name</th>
-                <th className="px-6 py-3 text-left text-sm font-semibold">Price</th>
+                <th className="px-6 py-3 text-left text-sm font-semibold">Min Price</th>
+                <th className="px-6 py-3 text-left text-sm font-semibold">Variants</th>
                 <th className="px-6 py-3 text-left text-sm font-semibold">Category</th>
                 <th className="px-6 py-3 text-left text-sm font-semibold">Status</th>
                 <th className="px-6 py-3 text-left text-sm font-semibold">Actions</th>
@@ -264,7 +321,8 @@ const AdminSnacks = () => {
               {snacks.map(snack => (
                 <tr key={snack._id} className="border-b hover:bg-gray-50">
                   <td className="px-6 py-3 text-sm">{snack.nameTA}</td>
-                  <td className="px-6 py-3 text-sm">₹{snack.price}</td>
+                  <td className="px-6 py-3 text-sm">₹{getMinPrice(snack)}</td>
+                  <td className="px-6 py-3 text-sm text-xs">{getVariantsDisplay(snack)}</td>
                   <td className="px-6 py-3 text-sm">{snack.category}</td>
                   <td className="px-6 py-3 text-sm">
                     <span className={`px-2 py-1 rounded text-xs ${snack.isEnabled ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}>

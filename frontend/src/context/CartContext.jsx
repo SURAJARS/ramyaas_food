@@ -14,10 +14,21 @@ export const CartProvider = ({ children }) => {
 
   const addToCart = (product, quantity = 1) => {
     setCartItems(prevItems => {
-      const existingItem = prevItems.find(item => item._id === product._id);
+      // For products with variants, create a unique key with variant info
+      const itemKey = product.selectedVariant 
+        ? `${product._id}_${product.selectedVariant.quantity}`
+        : product._id;
+      
+      const existingItem = prevItems.find(item => {
+        if (product.selectedVariant) {
+          return item._id === product._id && item.selectedVariant?.quantity === product.selectedVariant.quantity;
+        }
+        return item._id === product._id;
+      });
+      
       if (existingItem) {
         return prevItems.map(item =>
-          item._id === product._id
+          item === existingItem
             ? { ...item, quantity: item.quantity + quantity }
             : item
         );
@@ -26,8 +37,15 @@ export const CartProvider = ({ children }) => {
     });
   };
 
-  const removeFromCart = (productId) => {
-    setCartItems(prevItems => prevItems.filter(item => item._id !== productId));
+  const removeFromCart = (productId, variant = null) => {
+    setCartItems(prevItems => {
+      if (variant) {
+        // Remove specific variant
+        return prevItems.filter(item => !(item._id === productId && item.selectedVariant?.quantity === variant.quantity));
+      }
+      // Remove all items with this product ID
+      return prevItems.filter(item => item._id !== productId);
+    });
   };
 
   const updateQuantity = (productId, quantity) => {
