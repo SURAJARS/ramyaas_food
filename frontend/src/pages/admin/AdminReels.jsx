@@ -15,7 +15,8 @@ const AdminReels = () => {
     type: 'upload',
     instagramLink: '',
     video: null,
-    displayOrder: 0
+    displayOrder: 0,
+    isVisible: true
   });
 
   useEffect(() => {
@@ -34,8 +35,11 @@ const AdminReels = () => {
   };
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    const { name, value, type, checked } = e.target;
+    setFormData({ 
+      ...formData, 
+      [name]: type === 'checkbox' ? checked : value 
+    });
   };
 
   const handleFileChange = (e) => {
@@ -69,6 +73,7 @@ const AdminReels = () => {
       data.append('descriptionEN', formData.descriptionEN || '');
       data.append('type', formData.type);
       data.append('displayOrder', formData.displayOrder);
+      data.append('isVisible', formData.isVisible);
       
       if (formData.type === 'instagram') {
         data.append('instagramLink', formData.instagramLink);
@@ -87,7 +92,8 @@ const AdminReels = () => {
         type: 'upload',
         instagramLink: '',
         video: null,
-        displayOrder: 0
+        displayOrder: 0,
+        isVisible: true
       });
       fetchReels();
       setTimeout(() => setSuccess(false), 3000);
@@ -178,6 +184,35 @@ const AdminReels = () => {
           className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-ramyaas-500"
         ></textarea>
 
+        <textarea
+          name="descriptionEN"
+          placeholder="Description (English)"
+          value={formData.descriptionEN}
+          onChange={handleChange}
+          rows="2"
+          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-ramyaas-500"
+        ></textarea>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <input
+            type="number"
+            name="displayOrder"
+            placeholder="Display Order"
+            value={formData.displayOrder}
+            onChange={handleChange}
+            className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-ramyaas-500"
+          />
+          <label className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg bg-white">
+            <input
+              type="checkbox"
+              name="isVisible"
+              checked={formData.isVisible}
+              onChange={handleChange}
+            />
+            <span className="text-sm font-medium">Make Visible</span>
+          </label>
+        </div>
+
         <button
           type="submit"
           className="w-full bg-ramyaas-600 text-white py-2 rounded-lg font-semibold hover:bg-ramyaas-700"
@@ -193,7 +228,17 @@ const AdminReels = () => {
           {reels.map(reel => (
             <div key={reel._id} className="bg-white p-4 rounded-lg border border-gray-200">
               <h3 className="font-semibold text-gray-800 mb-2">{reel.titleTA}</h3>
-              <p className="text-sm text-gray-600 mb-4">Type: {reel.type}</p>
+              <p className="text-sm text-gray-600 mb-2">Type: {reel.type}</p>
+              <p className="text-xs text-gray-500 mb-2">
+                Status: {reel.isVisible ? '✅ Visible' : '❌ Hidden'}
+              </p>
+              {reel.type === 'instagram' && reel.instagramLink && (
+                <p className="text-xs text-blue-600 mb-2 truncate">
+                  <a href={reel.instagramLink} target="_blank" rel="noreferrer">
+                    View on Instagram
+                  </a>
+                </p>
+              )}
               <button
                 onClick={() => handleDelete(reel._id)}
                 className="text-red-600 hover:underline text-sm"

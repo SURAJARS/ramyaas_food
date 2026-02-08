@@ -71,7 +71,14 @@ const Reels = () => {
         {error && <ErrorMessage message={error} />}
         {loading && <LoadingSpinner />}
 
-        {!loading && (
+        {!loading && reels.length === 0 && (
+          <div className="text-center py-12">
+            <p className="text-gray-500 text-lg">No videos available yet.</p>
+            <p className="text-gray-400 text-sm mt-2">Check back soon for exciting content!</p>
+          </div>
+        )}
+
+        {!loading && reels.length > 0 && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {reels.map(reel => (
               <div key={reel._id} className="bg-gray-50 rounded-lg overflow-hidden">
