@@ -83,11 +83,23 @@ const AdminSnacks = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError(null);
+    
     try {
       // Validate variants
-      for (let variant of formData.variants) {
-        if (!variant.quantity || !variant.price) {
-          setError('All variants must have quantity and price');
+      if (!formData.variants || formData.variants.length === 0) {
+        setError('At least one variant is required');
+        return;
+      }
+
+      for (let i = 0; i < formData.variants.length; i++) {
+        const variant = formData.variants[i];
+        if (!variant.quantity || variant.quantity.trim() === '') {
+          setError(`Variant ${i + 1}: Please enter a quantity (e.g., 250g, 500g)`);
+          return;
+        }
+        if (!variant.price || variant.price === '') {
+          setError(`Variant ${i + 1} (${variant.quantity}): Please enter a price`);
           return;
         }
       }

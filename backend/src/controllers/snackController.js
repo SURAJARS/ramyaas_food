@@ -36,8 +36,18 @@ export const createSnack = async (req, res) => {
       imageUrl = cloudinaryData.cloudinaryPath;
     }
 
+    // Parse variants if sent as JSON string
+    let variants = req.body.variants;
+    if (typeof variants === 'string') {
+      try {
+        variants = JSON.parse(variants);
+      } catch (e) {
+        variants = [];
+      }
+    }
+
     // Validate variants
-    if (!req.body.variants || !Array.isArray(req.body.variants) || req.body.variants.length === 0) {
+    if (!variants || !Array.isArray(variants) || variants.length === 0) {
       return res.status(400).json({ message: 'At least one variant is required' });
     }
 
@@ -46,7 +56,7 @@ export const createSnack = async (req, res) => {
       nameEN: req.body.nameEN,
       descriptionTA: req.body.descriptionTA,
       descriptionEN: req.body.descriptionEN,
-      variants: req.body.variants, // Array of { quantity, price }
+      variants: variants,
       category: req.body.category,
       image: imageUrl,
       isEnabled: req.body.isEnabled !== undefined ? req.body.isEnabled : true
@@ -71,12 +81,23 @@ export const updateSnack = async (req, res) => {
     if (req.body.category) snack.category = req.body.category;
     if (req.body.isEnabled !== undefined) snack.isEnabled = req.body.isEnabled;
     
-    // Update variants
-    if (req.body.variants && Array.isArray(req.body.variants)) {
-      if (req.body.variants.length === 0) {
-        return res.status(400).json({ message: 'At least one variant is required' });
+    // Update variants - parse if sent as JSON string
+    if (req.body.variants) {
+      let variants = req.body.variants;
+      if (typeof variants === 'string') {
+        try {
+          variants = JSON.parse(variants);
+        } catch (e) {
+          variants = [];
+        }
       }
-      snack.variants = req.body.variants;
+      
+      if (Array.isArray(variants)) {
+        if (variants.length === 0) {
+          return res.status(400).json({ message: 'At least one variant is required' });
+        }
+        snack.variants = variants;
+      }
     }
     
     // Upload new image to Cloudinary if provided
