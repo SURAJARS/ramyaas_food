@@ -24,6 +24,13 @@ export const createReel = async (req, res) => {
       videoUrl = cloudinaryData.cloudinaryPath;
     }
 
+    // Auto-increment displayOrder if not provided
+    let displayOrder = parseInt(req.body.displayOrder) || 0;
+    if (!req.body.displayOrder || displayOrder === 0) {
+      const lastReel = await ReelContent.findOne().sort({ displayOrder: -1 });
+      displayOrder = (lastReel?.displayOrder || 0) + 1;
+    }
+
     const reel = new ReelContent({
       titleTA: req.body.titleTA,
       titleEN: req.body.titleEN,
@@ -31,8 +38,9 @@ export const createReel = async (req, res) => {
       descriptionEN: req.body.descriptionEN,
       type: req.body.type,
       instagramLink: req.body.instagramLink,
-      displayOrder: req.body.displayOrder || 0,
-      videoFile: videoUrl
+      displayOrder: displayOrder,
+      videoFile: videoUrl,
+      isVisible: req.body.isVisible !== undefined ? req.body.isVisible : true
     });
 
     const newReel = await reel.save();

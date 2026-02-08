@@ -18,13 +18,16 @@ export const uploadImage = multer({
 
 export const uploadVideo = multer({
   storage: memoryStorage,
-  limits: { fileSize: 100 * 1024 * 1024 },
+  limits: { 
+    fileSize: 200 * 1024 * 1024, // Increased from 100MB to 200MB for better mobile support
+    timeout: 600000 // 10 minutes timeout for large uploads
+  },
   fileFilter: (req, file, cb) => {
-    const filetypes = /mp4|avi|mov|webm/;
+    const filetypes = /mp4|avi|mov|webm|mkv|flv/;
     const mimetype = filetypes.test(file.mimetype);
     if (mimetype) {
       return cb(null, true);
     }
-    cb(new Error('Only video files are allowed'));
+    cb(new Error('Only video files are allowed (mp4, avi, mov, webm, mkv, flv)'));
   }
 });

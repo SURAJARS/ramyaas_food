@@ -7,6 +7,8 @@ const AdminReels = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
+  const [uploading, setUploading] = useState(false);
+  const [uploadProgress, setUploadProgress] = useState(0);
   const [formData, setFormData] = useState({
     titleTA: '',
     titleEN: '',
@@ -66,13 +68,17 @@ const AdminReels = () => {
     }
 
     try {
+      setUploading(true);
+      setUploadProgress(0);
+      setError(null);
+
       const data = new FormData();
       data.append('titleTA', formData.titleTA);
       data.append('titleEN', formData.titleEN);
       data.append('descriptionTA', formData.descriptionTA || '');
       data.append('descriptionEN', formData.descriptionEN || '');
       data.append('type', formData.type);
-      data.append('displayOrder', formData.displayOrder);
+      // Don't send displayOrder - let backend auto-increment
       data.append('isVisible', formData.isVisible);
       
       if (formData.type === 'instagram') {
@@ -81,9 +87,20 @@ const AdminReels = () => {
         data.append('video', formData.video);
       }
 
+      // Simulate upload progress
+      const progressInterval = setInterval(() => {
+        setUploadProgress(prev => {
+          if (prev >= 90) return prev;
+          return prev + Math.random() * 30;
+        });
+      }, 500);
+
       await reelsApi.create(data);
+      
+      clearInterval(progressInterval);
+      setUploadProgress(100);
       setSuccess(true);
-      setError(null);
+      
       setFormData({
         titleTA: '',
         titleEN: '',
@@ -96,11 +113,17 @@ const AdminReels = () => {
         isVisible: true
       });
       fetchReels();
-      setTimeout(() => setSuccess(false), 3000);
+      setTimeout(() => {
+        setSuccess(false);
+        setUploading(false);
+        setUploadProgress(0);
+      }, 3000);
     } catch (err) {
       const errorMessage = err.response?.data?.message || err.message || 'Failed to create reel';
       setError(errorMessage);
       console.error('Reel creation error:', err);
+      setUploading(false);
+      setUploadProgress(0);
     }
   };
 
@@ -194,14 +217,14 @@ const AdminReels = () => {
         ></textarea>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <input
-            type="number"
-            name="displayOrder"
-            placeholder="Display Order"
-            value={formData.displayOrder}
-            onChange={handleChange}
-            className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-ramyaas-500"
-          />
+          <div className="hidden">
+            <input
+              type="number"
+              name="displayOrder"
+              value={formData.displayOrder}
+              onChange={handleChange}
+            />
+          </div>
           <label className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg bg-white">
             <input
               type="checkbox"
@@ -213,11 +236,30 @@ const AdminReels = () => {
           </label>
         </div>
 
+        {uploading && (
+          <div className="space-y-2">
+            <div className="flex justify-between text-sm">
+              <span className="font-medium text-gray-700">Uploading...</span>
+              <span className="text-gray-600">{Math.round(uploadProgress)}%</span>
+            </div>
+            <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
+              <div 
+                className="bg-ramyaas-600 h-full rounded-full transition-all duration-300"
+                style={{ width: `${uploadProgress}%` }}
+              ></div>
+            </div>
+            <p className="text-xs text-gray-500">
+              {formData.video ? `File size: ${(formData.video.size / 1024 / 1024).toFixed(2)} MB` : ''}
+            </p>
+          </div>
+        )}
+
         <button
           type="submit"
-          className="w-full bg-ramyaas-600 text-white py-2 rounded-lg font-semibold hover:bg-ramyaas-700"
+          disabled={uploading}
+          className="w-full bg-ramyaas-600 text-white py-2 rounded-lg font-semibold hover:bg-ramyaas-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
         >
-          Create Reel
+          {uploading ? 'Uploading...' : 'Create Reel'}
         </button>
       </form>
 
