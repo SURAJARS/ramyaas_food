@@ -17,6 +17,25 @@ const Home = () => {
         <p className="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto">
           {gettext('tagline', language)}
         </p>
+        
+        {/* Quality Highlights */}
+        <div className="mb-8 max-w-2xl mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm md:text-base font-medium text-gray-700">
+            <div className="py-2 px-3 bg-green-50 rounded-lg border border-green-200">
+              ✓ No Palm Oil
+            </div>
+            <div className="py-2 px-3 bg-green-50 rounded-lg border border-green-200">
+              ✓ No Preservatives
+            </div>
+            <div className="py-2 px-3 bg-green-50 rounded-lg border border-green-200">
+              ✓ No Maida
+            </div>
+            <div className="py-2 px-3 bg-green-50 rounded-lg border border-green-200">
+              ✓ No Artificial Additives
+            </div>
+          </div>
+        </div>
+
         <div className="flex gap-4 justify-center flex-wrap">
           <Link
             to="/snacks"
