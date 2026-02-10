@@ -196,10 +196,9 @@ const CategoriesSection = () => {
                   style={{
                     backgroundImage: `url('${category.image}')`,
                     backgroundSize: 'cover',
-                    backgroundPosition: 'center',
+                    backgroundPosition: `center ${scrollPosition * -0.15}px`,
                     backgroundAttachment: 'cover',
-                    transform: `translateY(${scrollPosition * 0.3}px)`,
-                    transition: 'transform 0.1s ease-out'
+                    transition: 'background-position 0.1s ease-out'
                   }}
                 >
                   {/* Shimmer overlay */}
