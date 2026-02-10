@@ -6,6 +6,7 @@ import ProductCarousel from '../components/ProductCarousel';
 import CategoriesSection from '../components/CategoriesSection';
 import FeedbackSection from '../components/FeedbackSection';
 import ProductShowcase from '../components/ProductShowcase';
+import logoImage from '../assets/logo.png';
 import { snackApi } from '../utils/api';
 
 const Home = () => {
@@ -120,11 +121,12 @@ const Home = () => {
                 : 'RAMYAAS prepares delicious homemade foods using traditional recipes. Our podi, pickle, and snacks are made with pure ingredients.'}
             </p>
           </div>
-          <div className="bg-ramyaas-100 h-96 rounded-lg flex items-center justify-center">
-            <div className="text-center">
-              <p className="text-ramyaas-700 font-semibold text-2xl">🍛 RAMYAAS 🍛</p>
-              <p className="text-ramyaas-600 text-sm mt-2">Premium Homemade Foods</p>
-            </div>
+          <div className="bg-ramyaas-100 h-96 rounded-lg flex items-center justify-center overflow-hidden">
+            <img 
+              src={logoImage} 
+              alt="RAMYAAS Logo" 
+              className="w-full h-full object-contain p-8"
+            />
           </div>
         </div>
       </section>
