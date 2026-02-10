@@ -94,7 +94,7 @@ const Home = () => {
             <div className="bg-white rounded-lg p-6 text-center border border-ramyaas-100">
               <div className="text-4xl font-bold text-ramyaas-600 mb-2">🚚</div>
               <p className="text-gray-600 font-semibold">Fast Delivery</p>
-              <p className="text-sm text-gray-500 mt-1">Within 24 Hours</p>
+              <p className="text-sm text-gray-500 mt-1">Quick & Convenient</p>
             </div>
             <div className="bg-white rounded-lg p-6 text-center border border-ramyaas-100">
               <div className="text-4xl font-bold text-ramyaas-600 mb-2">💚</div>
