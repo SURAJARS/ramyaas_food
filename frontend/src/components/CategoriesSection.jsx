@@ -157,7 +157,7 @@ const CategoriesSection = () => {
         {/* Heading Section */}
         <div className="text-center mb-20">
           <h2 className="heading-entrance font-serif text-5xl md:text-6xl font-bold text-amber-900 mb-6">
-            {language === 'ta' ? 'எங்கள் கையொழுக்க வகைகளை கண்டறியுங்கள்' : 'Explore Our Signature Categories'}
+            {language === 'ta' ? 'எங்களின் தனித்துவமான பிரிவுகளைக் கண்டறியுங்கள்' : 'Explore Our Signature Categories'}
           </h2>
           
           {/* Decorative divider */}
