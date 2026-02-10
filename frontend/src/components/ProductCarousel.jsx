@@ -120,9 +120,9 @@ const ProductCarousel = ({ products }) => {
       `}</style>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-stretch">
           {/* Left Content */}
-          <div className="relative z-20 text-center lg:text-left">
+          <div className="relative z-20 text-center lg:text-left flex flex-col justify-between py-8 lg:py-0 px-4 lg:px-0">
             {/* Premium Brand Tag */}
             <div className="inline-block mb-6">
               <span className="text-xs md:text-sm font-semibold text-amber-700 bg-amber-100 px-4 py-2 rounded-full">
@@ -131,32 +131,35 @@ const ProductCarousel = ({ products }) => {
             </div>
 
             {/* Emotional Headline */}
-            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight">
+            <h1 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold mb-3 leading-tight">
               <span className="text-amber-900">{emotionalHeadline}</span>
             </h1>
 
             {/* Product Name */}
-            <h2 className="text-xl md:text-2xl text-gray-700 mb-6 font-medium tracking-wide">
+            <h2 className="text-lg md:text-xl lg:text-2xl text-gray-700 mb-4 font-medium tracking-wide">
               {displayName}
             </h2>
 
             {/* Description */}
-            <p className="text-gray-600 text-base md:text-lg mb-8 max-w-xl leading-relaxed">
+            <p className="text-gray-600 text-base md:text-lg mb-6 max-w-xl leading-relaxed">
               {displayDesc}
             </p>
 
-            {/* Price Section */}
-            <div className="flex items-center gap-4 mb-10 justify-center lg:justify-start">
+            {/* Spacer */}
+            <div className="flex-1"></div>
+
+            {/* Price Section - Positioned at Bottom */}
+            <div className="flex items-end gap-4 mb-8 justify-center lg:justify-start">
               <div>
-                <p className="text-sm text-gray-500 mb-1 tracking-wide">
+                <p className="text-xs md:text-sm text-gray-500 mb-1 tracking-wide">
                   {language === 'ta' ? 'வெறும்' : 'Starting from'}
                 </p>
-                <p className="text-4xl md:text-5xl font-bold text-amber-700 font-serif">
+                <p className="text-3xl md:text-4xl lg:text-5xl font-bold text-amber-700 font-serif">
                   ₹{minPrice}
                 </p>
               </div>
-              <div className="h-16 w-1 bg-gradient-to-b from-amber-400 to-transparent"></div>
-              <p className="text-sm text-gray-600 max-w-[120px]">
+              <div className="h-12 md:h-16 w-1 bg-gradient-to-b from-amber-400 to-transparent"></div>
+              <p className="text-xs md:text-sm text-gray-600 max-w-[100px]">
                 {language === 'ta' 
                   ? '100% கையால் தயாரிக்கப்பட்ட, பரிசாரம் இல்லை' 
                   : '100% Handmade, Pure Quality'}
@@ -164,7 +167,7 @@ const ProductCarousel = ({ products }) => {
             </div>
 
             {/* CTA Button */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-12">
               <button className="group relative px-8 py-4 text-lg font-semibold text-white overflow-hidden rounded-lg">
                 <div className="absolute inset-0 bg-gradient-to-r from-amber-700 to-orange-600 group-hover:from-amber-800 group-hover:to-orange-700 transition-all duration-300"></div>
                 <span className="relative flex items-center justify-center gap-2">
@@ -177,7 +180,7 @@ const ProductCarousel = ({ products }) => {
             </div>
 
             {/* Slide Indicators with Progress */}
-            <div className="mt-12 flex items-center justify-center lg:justify-start gap-3">
+            <div className="flex items-center justify-center lg:justify-start gap-3">
               {products.map((_, index) => (
                 <div key={index} className="relative">
                   <button
@@ -234,29 +237,29 @@ const ProductCarousel = ({ products }) => {
           </div>
         </div>
 
-        {/* Navigation Arrows */}
-        <div className="absolute left-4 right-4 top-1/2 -translate-y-1/2 pointer-events-none z-30 hidden lg:flex justify-between">
+        {/* Navigation Arrows - Positioned at Top */}
+        <div className="absolute top-8 left-4 right-4 pointer-events-none z-30 flex justify-between">
           <button
             onClick={prevSlide}
-            className="pointer-events-auto group relative w-16 h-16 rounded-full backdrop-blur-md bg-white/20 hover:bg-white/40 border border-white/30 flex items-center justify-center transition-all duration-300 hover:shadow-xl"
+            className="pointer-events-auto group relative w-14 h-14 lg:w-16 lg:h-16 rounded-full backdrop-blur-md bg-white/20 hover:bg-white/40 border border-white/30 flex items-center justify-center transition-all duration-300 hover:shadow-xl"
             aria-label="Previous slide"
           >
-            <svg className="w-6 h-6 text-amber-900 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-5 h-5 lg:w-6 lg:h-6 text-amber-900 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
             </svg>
           </button>
           <button
             onClick={nextSlide}
-            className="pointer-events-auto group relative w-16 h-16 rounded-full backdrop-blur-md bg-white/20 hover:bg-white/40 border border-white/30 flex items-center justify-center transition-all duration-300 hover:shadow-xl"
+            className="pointer-events-auto group relative w-14 h-14 lg:w-16 lg:h-16 rounded-full backdrop-blur-md bg-white/20 hover:bg-white/40 border border-white/30 flex items-center justify-center transition-all duration-300 hover:shadow-xl"
             aria-label="Next slide"
           >
-            <svg className="w-6 h-6 text-amber-900 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-5 h-5 lg:w-6 lg:h-6 text-amber-900 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
             </svg>
           </button>
         </div>
 
-        {/* Mobile Navigation */}
+        {/* Mobile Navigation - Bottom position */}
         <div className="lg:hidden flex justify-center gap-4 mt-8">
           <button
             onClick={prevSlide}
