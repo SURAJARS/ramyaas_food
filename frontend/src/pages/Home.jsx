@@ -4,6 +4,7 @@ import { useLanguage } from '../context/LanguageContext';
 import { gettext } from '../utils/translations';
 import ProductCarousel from '../components/ProductCarousel';
 import CategoriesSection from '../components/CategoriesSection';
+import FeedbackSection from '../components/FeedbackSection';
 import { snackApi } from '../utils/api';
 
 const Home = () => {
@@ -126,6 +127,9 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+      {/* Feedback Section */}
+      <FeedbackSection />
 
       {/* Services Section */}
       <section className="bg-gray-50 py-20">
