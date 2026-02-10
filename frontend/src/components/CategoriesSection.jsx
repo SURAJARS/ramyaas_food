@@ -224,15 +224,6 @@ const CategoriesSection = () => {
             </div>
           ))}
         </div>
-
-        {/* Bottom decorative element */}
-        <div className="mt-20 text-center">
-          <div className="inline-block px-8 py-3 rounded-full bg-amber-100/50 border border-amber-300/50 backdrop-blur-sm">
-            <p className="text-amber-900 font-medium text-sm">
-              {language === 'ta' ? '✨ 100% கையால் தயாரிக்கப்பட்ட மற்றும் பரிசாரம் இல்லை' : '✨ 100% Handmade & Pure Quality'}
-            </p>
-          </div>
-        </div>
       </div>
     </section>
   );
