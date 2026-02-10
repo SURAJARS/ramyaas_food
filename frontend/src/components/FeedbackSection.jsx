@@ -1,23 +1,24 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useLanguage } from '../context/LanguageContext';
+import feedback1 from '../assets/feedback/feedback1_1.jpeg';
+import feedback2 from '../assets/feedback/feedback2_1.jpeg';
+import feedback3 from '../assets/feedback/feedback3_1.jpeg';
+import feedback4 from '../assets/feedback/feedback4_1.jpeg';
 
 const FeedbackSection = () => {
   const { language } = useLanguage();
-  const [activeImageIndex, setActiveImageIndex] = useState({});
   const [hoveredCard, setHoveredCard] = useState(null);
   const [scrollPosition, setScrollPosition] = useState(0);
-  const [cardImages, setCardImages] = useState({});
   const sectionRef = useRef(null);
-  const imageIntervals = useRef({});
 
-  // Feedback data with multiple images per card
+  // Feedback data with single image per card
   const feedbackCards = [
     {
       id: 1,
       name: 'Priya Kumar',
       location: 'Chennai, Tamil Nadu',
       feedback: 'Absolutely love the quality! Fresh and delicious every time.',
-      imageCount: 3,
+      image: feedback1,
       rotation: -2
     },
     {
@@ -25,7 +26,7 @@ const FeedbackSection = () => {
       name: 'Rajesh Singh',
       location: 'Bangalore, Karnataka',
       feedback: 'Best homemade snacks I have ever tasted. Highly recommended!',
-      imageCount: 2,
+      image: feedback2,
       rotation: 2
     },
     {
@@ -33,7 +34,7 @@ const FeedbackSection = () => {
       name: 'Ananya Patel',
       location: 'Hyderabad, Telangana',
       feedback: 'The podi and pickles are exactly what I needed. Pure quality.',
-      imageCount: 4,
+      image: feedback3,
       rotation: -2
     },
     {
@@ -41,41 +42,10 @@ const FeedbackSection = () => {
       name: 'Vikram Reddy',
       location: 'Mumbai, Maharashtra',
       feedback: 'Premium quality and amazing taste. Worth every rupee!',
-      imageCount: 3,
+      image: feedback4,
       rotation: 2
     }
   ];
-
-  // Load feedback images dynamically
-  useEffect(() => {
-    const loadImages = async () => {
-      const images = {};
-      for (const card of feedbackCards) {
-        images[card.id] = [];
-        for (let i = 1; i <= card.imageCount; i++) {
-          const imagePath = `../assets/feedback/feedback${card.id}_${i}.jpeg`;
-          try {
-            const image = require(imagePath);
-            images[card.id].push(image);
-          } catch (err) {
-            // If image doesn't exist, use placeholder
-            images[card.id].push(null);
-          }
-        }
-      }
-      setCardImages(images);
-    };
-    loadImages();
-  }, []);
-
-  // Initialize active images
-  useEffect(() => {
-    const initial = {};
-    feedbackCards.forEach(card => {
-      initial[card.id] = 0;
-    });
-    setActiveImageIndex(initial);
-  }, []);
 
   // Handle scroll for parallax
   useEffect(() => {
@@ -94,37 +64,10 @@ const FeedbackSection = () => {
   // Handle card hover - cycle through images
   const handleCardHover = (cardId) => {
     setHoveredCard(cardId);
-    
-    // Clear any existing interval for this card
-    if (imageIntervals.current[cardId]) {
-      clearInterval(imageIntervals.current[cardId]);
-    }
-
-    const images = cardImages[cardId] || [];
-    if (images.length > 1) {
-      imageIntervals.current[cardId] = setInterval(() => {
-        setActiveImageIndex(prev => ({
-          ...prev,
-          [cardId]: (prev[cardId] + 1) % images.length
-        }));
-      }, 1500);
-    }
   };
 
   const handleCardLeave = (cardId) => {
     setHoveredCard(null);
-    
-    // Clear interval when hover ends
-    if (imageIntervals.current[cardId]) {
-      clearInterval(imageIntervals.current[cardId]);
-      delete imageIntervals.current[cardId];
-    }
-    
-    // Reset to first image
-    setActiveImageIndex(prev => ({
-      ...prev,
-      [cardId]: 0
-    }));
   };
 
   return (
@@ -220,58 +163,11 @@ const FeedbackSection = () => {
                 >
                   {/* Image carousel */}
                   <div className="relative w-full h-full">
-                    {cardImages[card.id] && cardImages[card.id].length > 0 ? (
-                      <>
-                        {cardImages[card.id].map((image, idx) => (
-                          image ? (
-                            <img
-                              key={idx}
-                              src={image}
-                              alt={`Feedback ${card.id}`}
-                              className="card-image absolute inset-0 w-full h-full object-cover"
-                              style={{
-                                opacity: activeImageIndex[card.id] === idx ? 1 : 0
-                              }}
-                            />
-                          ) : (
-                            <div
-                              key={idx}
-                              className="card-image absolute inset-0 w-full h-full bg-gradient-to-br from-amber-100 to-orange-100 flex items-center justify-center"
-                              style={{
-                                opacity: activeImageIndex[card.id] === idx ? 1 : 0
-                              }}
-                            >
-                              <div className="text-center">
-                                <p className="text-3xl mb-2">📸</p>
-                                <p className="text-sm text-amber-900">Image {idx + 1}</p>
-                              </div>
-                            </div>
-                          )
-                        ))}
-
-                        {/* Image indicators */}
-                        {cardImages[card.id].length > 1 && (
-                          <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1 z-10">
-                            {cardImages[card.id].map((_, idx) => (
-                              <div
-                                key={idx}
-                                className="w-1.5 h-1.5 rounded-full transition-all duration-300"
-                                style={{
-                                  backgroundColor: activeImageIndex[card.id] === idx ? 'white' : 'rgba(255,255,255,0.5)'
-                                }}
-                              ></div>
-                            ))}
-                          </div>
-                        )}
-                      </>
-                    ) : (
-                      <div className="absolute inset-0 w-full h-full bg-gradient-to-br from-amber-100 to-orange-100 flex items-center justify-center">
-                        <div className="text-center">
-                          <p className="text-4xl mb-2">⭐</p>
-                          <p className="text-sm text-amber-900 font-semibold">{card.name}</p>
-                        </div>
-                      </div>
-                    )}
+                    <img
+                      src={card.image}
+                      alt={`Feedback from ${card.name}`}
+                      className="w-full h-full object-cover"
+                    />
 
                     {/* Gradient overlay at bottom for text */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
