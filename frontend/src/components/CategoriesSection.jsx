@@ -94,10 +94,10 @@ const CategoriesSection = () => {
   return (
     <section 
       ref={sectionRef}
-      className="relative w-full py-24 bg-gradient-to-b from-amber-50 to-orange-50"
+      className="relative w-full overflow-hidden pt-20 pb-24 bg-gradient-to-b from-amber-50 to-orange-50"
     >
       {/* Decorative background elements */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-gradient-radial from-yellow-200/30 to-transparent rounded-full blur-3xl"></div>
+      <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-96 h-96 bg-gradient-radial from-yellow-200/20 to-transparent rounded-full blur-3xl pointer-events-none"></div>
 
       <style>{`
         @keyframes shimmer {
