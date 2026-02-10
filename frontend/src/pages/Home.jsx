@@ -4,7 +4,7 @@ import { useLanguage } from '../context/LanguageContext';
 import { gettext } from '../utils/translations';
 import logoImage from '../assets/logo.png';
 import ProductCarousel from '../components/ProductCarousel';
-import { snackApi } from '../api/index';
+import { snackApi } from '../utils/api';
 
 const Home = () => {
   const { language } = useLanguage();
@@ -13,7 +13,7 @@ const Home = () => {
   useEffect(() => {
     const fetchSnacks = async () => {
       try {
-        const response = await snackApi.getAllSnacks();
+        const response = await snackApi.getAll();
         // Get first 5 snacks for carousel
         setFeaturedSnacks(response.data.slice(0, 5));
       } catch (error) {
