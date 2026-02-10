@@ -189,14 +189,15 @@ const CategoriesSection = () => {
                   : 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)'
               }}
             >
-              <div className="category-card-inner relative h-80 rounded-2xl overflow-hidden shadow-xl bg-gray-200">
+              <div className="category-card-inner relative h-80 rounded-2xl overflow-hidden shadow-xl bg-gray-900">
                 {/* Image with parallax */}
                 <div
-                  className="absolute inset-0"
+                  className="absolute inset-0 w-full h-full"
                   style={{
                     backgroundImage: `url('${category.image}')`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
+                    backgroundAttachment: 'cover',
                     transform: `translateY(${scrollPosition * 0.3}px)`,
                     transition: 'transform 0.1s ease-out'
                   }}
