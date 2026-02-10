@@ -120,11 +120,11 @@ const ProductCarousel = ({ products }) => {
       `}</style>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-stretch">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Left Content */}
-          <div className="relative z-20 text-center lg:text-left flex flex-col justify-between py-8 lg:py-0 px-4 lg:px-0">
+          <div className="relative z-20 text-center lg:text-left">
             {/* Premium Brand Tag */}
-            <div className="inline-block mb-6">
+            <div className="inline-block mb-6 justify-center lg:justify-start flex">
               <span className="text-xs md:text-sm font-semibold text-amber-700 bg-amber-100 px-4 py-2 rounded-full">
                 {language === 'ta' ? '✨ பிரিமியம் தேர்வு' : '✨ Premium Selection'}
               </span>
@@ -141,15 +141,12 @@ const ProductCarousel = ({ products }) => {
             </h2>
 
             {/* Description */}
-            <p className="text-gray-600 text-base md:text-lg mb-6 max-w-xl leading-relaxed">
+            <p className="text-gray-600 text-base md:text-lg mb-8 max-w-xl leading-relaxed">
               {displayDesc}
             </p>
 
-            {/* Spacer */}
-            <div className="flex-1"></div>
-
-            {/* Price Section - Positioned at Bottom */}
-            <div className="flex items-end gap-4 mb-8 justify-center lg:justify-start">
+            {/* Price Section - Centered */}
+            <div className="flex items-center gap-4 mb-10 justify-center lg:justify-start">
               <div>
                 <p className="text-xs md:text-sm text-gray-500 mb-1 tracking-wide">
                   {language === 'ta' ? 'வெறும்' : 'Starting from'}
@@ -167,7 +164,7 @@ const ProductCarousel = ({ products }) => {
             </div>
 
             {/* CTA Button */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-12">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mt-10">
               <button className="group relative px-8 py-4 text-lg font-semibold text-white overflow-hidden rounded-lg">
                 <div className="absolute inset-0 bg-gradient-to-r from-amber-700 to-orange-600 group-hover:from-amber-800 group-hover:to-orange-700 transition-all duration-300"></div>
                 <span className="relative flex items-center justify-center gap-2">
@@ -180,7 +177,7 @@ const ProductCarousel = ({ products }) => {
             </div>
 
             {/* Slide Indicators with Progress */}
-            <div className="flex items-center justify-center lg:justify-start gap-3">
+            <div className="mt-8 flex items-center justify-center lg:justify-start gap-3">
               {products.map((_, index) => (
                 <div key={index} className="relative">
                   <button
