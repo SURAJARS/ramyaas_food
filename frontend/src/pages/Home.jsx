@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { gettext } from '../utils/translations';
-import logoImage from '../assets/logo.png';
 import ProductCarousel from '../components/ProductCarousel';
+import CategoriesSection from '../components/CategoriesSection';
 import { snackApi } from '../utils/api';
 
 const Home = () => {
@@ -71,6 +71,9 @@ const Home = () => {
       {/* Product Carousel Section */}
       {featuredSnacks.length > 0 && <ProductCarousel products={featuredSnacks} />}
 
+      {/* Categories Section */}
+      <CategoriesSection />
+
       {/* Stats Section */}
       <section className="bg-ramyaas-50 py-16">
         <div className="max-w-7xl mx-auto px-4">
@@ -116,11 +119,10 @@ const Home = () => {
             </p>
           </div>
           <div className="bg-ramyaas-100 h-96 rounded-lg flex items-center justify-center">
-            <img 
-              src={logoImage} 
-              alt="RAMYAAS Logo" 
-              className="h-48 w-auto"
-            />
+            <div className="text-center">
+              <p className="text-ramyaas-700 font-semibold text-2xl">🍛 RAMYAAS 🍛</p>
+              <p className="text-ramyaas-600 text-sm mt-2">Premium Homemade Foods</p>
+            </div>
           </div>
         </div>
       </section>
