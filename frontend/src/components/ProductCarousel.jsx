@@ -234,23 +234,23 @@ const ProductCarousel = ({ products }) => {
           </div>
         </div>
 
-        {/* Navigation Arrows - Positioned at Top */}
-        <div className="absolute top-8 left-4 right-4 pointer-events-none z-30 flex justify-between">
+        {/* Navigation Arrows - Positioned on Right Side for Desktop */}
+        <div className="hidden lg:flex absolute right-8 top-1/2 -translate-y-1/2 pointer-events-none z-30 flex-col justify-between gap-4">
           <button
             onClick={prevSlide}
-            className="pointer-events-auto group relative w-14 h-14 lg:w-16 lg:h-16 rounded-full backdrop-blur-md bg-white/20 hover:bg-white/40 border border-white/30 flex items-center justify-center transition-all duration-300 hover:shadow-xl"
+            className="pointer-events-auto group relative w-14 h-14 rounded-full backdrop-blur-md bg-white/20 hover:bg-white/40 border border-white/30 flex items-center justify-center transition-all duration-300 hover:shadow-xl"
             aria-label="Previous slide"
           >
-            <svg className="w-5 h-5 lg:w-6 lg:h-6 text-amber-900 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-5 h-5 text-amber-900 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
             </svg>
           </button>
           <button
             onClick={nextSlide}
-            className="pointer-events-auto group relative w-14 h-14 lg:w-16 lg:h-16 rounded-full backdrop-blur-md bg-white/20 hover:bg-white/40 border border-white/30 flex items-center justify-center transition-all duration-300 hover:shadow-xl"
+            className="pointer-events-auto group relative w-14 h-14 rounded-full backdrop-blur-md bg-white/20 hover:bg-white/40 border border-white/30 flex items-center justify-center transition-all duration-300 hover:shadow-xl"
             aria-label="Next slide"
           >
-            <svg className="w-5 h-5 lg:w-6 lg:h-6 text-amber-900 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-5 h-5 text-amber-900 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
             </svg>
           </button>
