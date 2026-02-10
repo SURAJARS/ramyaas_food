@@ -1,7 +1,7 @@
 const tamilvEnglish = {
   // Header/Nav
   home: { ta: 'முகப்பு', en: 'Home' },
-  snacks: { ta: 'காரணங்கள்', en: 'Snacks' },
+  snacks: { ta: 'காரங்கள்', en: 'Snacks' },
   menu: { ta: 'மெனு', en: 'Menu' },
   catering: { ta: 'அம்மன் கேட்டரிங்', en: 'Amman Catering' },
   bulkOrders: { ta: 'மொத்த ஆர்டர்கள்', en: 'Bulk Orders' },
@@ -14,13 +14,13 @@ const tamilvEnglish = {
   english: { ta: 'ஆங்கிலம்', en: 'English' },
 
   // Home Page
-  tagline: { ta: 'வீட்டில் தயாரிக்கப்பட்ட பொடி, ஊறுகாய் மற்றும் காரணங்கள்', en: 'Homemade Podi, Pickle and Snacks' },
-  ramyaas: { ta: 'ராம்யாஸ்', en: 'RAMYAAS' },
+  tagline: { ta: 'வீட்டில் தயாரிக்கப்பட்ட பொடி, ஊறுகாய் மற்றும் காரங்கள்', en: 'Homemade Podi, Pickle and Snacks' },
+  ramyaas: { ta: 'ரம்யாஸ்', en: 'RAMYAAS' },
   aboutUs: { ta: 'எங்களை பற்றி', en: 'About Us' },
   ourStory: { ta: 'பாரம்பரியமான செய்முறைகளைப் பயன்படுத்தி தயாரிக்கப்பட்ட சுவையான வீட்டு உணவுகள்', en: 'Delicious homemade foods prepared using traditional recipes' },
 
   // Snacks Page
-  snacksTitle: { ta: 'இறுக்கமான காரணங்கள் & இனிப்புகள்', en: 'Snacks & Sweets' },
+  snacksTitle: { ta: 'மொறுமொறுப்பான காரங்கள் மற்றும் இனிப்புகள்', en: 'Snacks & Sweets' },
   price: { ta: 'விலை', en: 'Price' },
   inquireOnWhatsApp: { ta: 'WhatsApp இல் விசாரிக்கவும்', en: 'Inquire on WhatsApp' },
   addedToCart: { ta: 'கூடையில் சேர்க்கப்பட்டது', en: 'Added to Cart' },
@@ -43,7 +43,7 @@ const tamilvEnglish = {
 
   // Bulk Orders Page
   bulkOrdersTitle: { ta: 'மொத்த ஆர்டர்கள்', en: 'Bulk Orders' },
-  bulkOrdersSubtitle: { ta: 'ஆர்டர் புரோட்டீன்ஸ் மற்றும் நெகேட்டிவ்ஸ்', en: 'Order bulk snacks and items' },
+  bulkOrdersSubtitle: { ta: 'மொத்தமாக காரங்கள் மற்றும் இனிப்புகளை ஆர்டர் செய்ய விரும்பினால்', en: 'Order bulk snacks and items' },
   company: { ta: 'நிறுவனம்', en: 'Company' },
   quantity: { ta: 'அளவு', en: 'Quantity' },
   unit: { ta: 'அலகு', en: 'Unit' },
@@ -59,18 +59,18 @@ const tamilvEnglish = {
   contactTitle: { ta: 'தொடர்பு கொள்ளவும்', en: 'Contact Us' },
   fullName: { ta: 'முழு பெயர்', en: 'Full Name' },
   email: { ta: 'மின்னஞ்சல்', en: 'Email' },
-  phone: { ta: 'ফোன் எண்', en: 'Phone' },
+  phone: { ta: 'தொலைபேசி எண்', en: 'Phone' },
   message: { ta: 'செய்தி', en: 'Message' },
   send: { ta: 'அனுப்பவும்', en: 'Send' },
   messageSent: { ta: 'செய்தி வெற்றிகரமாக அனுப்பப்பட்டது', en: 'Message sent successfully' },
 
   // Admin
-  dashboard: { ta: 'டிஷ்ப்போர்ட்', en: 'Dashboard' },
-  snacksManagement: { ta: 'காரணங்கள் நிர்வாகம்', en: 'Snacks Management' },
+  dashboard: { ta: 'கட்டுப்பாட்டுப் பலகை', en: 'Dashboard' },
+  snacksManagement: { ta: 'காரங்கள் நிர்வாகம்', en: 'Snacks Management' },
   menuImages: { ta: 'மெனு படங்கள்', en: 'Menu Images' },
   reelsVideos: { ta: 'வீடியோக்கள்', en: 'Reels / Videos' },
   cateringOrders: { ta: 'கேட்டரிங் ஆர்டர்கள்', en: 'Catering Orders' },
-  couponsDiscounts: { ta: 'குப்ன்கள் & ছাড்கள்', en: 'Coupons & Discounts' },
+  couponsDiscounts: { ta:  'கூப்பன்கள் & தள்ளுபடிகள்', en: 'Coupons & Discounts' },
   shippingSettings: { ta: 'ஷிப்பிங் அமைப்புகள்', en: 'Shipping Settings' },
   inquiries: { ta: 'விசாரணைகள்', en: 'Inquiries' },
 
