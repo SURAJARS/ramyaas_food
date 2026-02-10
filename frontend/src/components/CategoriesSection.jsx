@@ -14,12 +14,12 @@ const CategoriesSection = () => {
 
   const categories = [
     {
-      id: 'podi',
-      nameEN: 'Podi',
-      nameTA: 'பொடி',
-      descEN: 'Traditional spice powder blends',
-      descTA: 'பாரம்பரிய மசாலா பொடி',
-      image: podiImage
+      id: 'sweets',
+      nameEN: 'Sweets',
+      nameTA: 'இனிப்பு',
+      descEN: 'Handcrafted sweet treats',
+      descTA: 'கையால் செய்யப்பட்ட இனிப்புகள்',
+      image: sweetsImage
     },
     {
       id: 'pickle',
@@ -38,12 +38,12 @@ const CategoriesSection = () => {
       image: snacksImage
     },
     {
-      id: 'sweets',
-      nameEN: 'Sweets',
-      nameTA: 'இனிப்பு',
-      descEN: 'Handcrafted sweet treats',
-      descTA: 'கையால் செய்யப்பட்ட இனிப்புகள்',
-      image: sweetsImage
+      id: 'podi',
+      nameEN: 'Podi',
+      nameTA: 'பொடி',
+      descEN: 'Traditional spice powder blends',
+      descTA: 'பாரம்பரிய மசாலா பொடி',
+      image: podiImage
     }
   ];
 
