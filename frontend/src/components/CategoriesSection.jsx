@@ -1,5 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useLanguage } from '../context/LanguageContext';
+import podiImage from '../assets/podi.jpeg';
+import pickleImage from '../assets/pickle.jpeg';
+import snacksImage from '../assets/snacks.jpeg';
+import sweetsImage from '../assets/sweets.jpeg';
 
 const CategoriesSection = () => {
   const { language } = useLanguage();
@@ -15,7 +19,7 @@ const CategoriesSection = () => {
       nameTA: 'பொடி',
       descEN: 'Traditional spice powder blends',
       descTA: 'பாரம்பரிய மசாலா பொடி',
-      image: '/src/assets/podi.jpeg'
+      image: podiImage
     },
     {
       id: 'pickle',
@@ -23,7 +27,7 @@ const CategoriesSection = () => {
       nameTA: 'ஊறுகாய்',
       descEN: 'Homemade tangy preserves',
       descTA: 'கையால் தயாரிக்கப்பட்ட ஊறுகாய்',
-      image: '/src/assets/pickle.jpeg'
+      image: pickleImage
     },
     {
       id: 'snacks',
@@ -31,7 +35,7 @@ const CategoriesSection = () => {
       nameTA: 'சுட்ட உணவுகள்',
       descEN: 'Crispy delicious bites',
       descTA: 'மொறுமொறுப்பான சுவையான உணவுகள்',
-      image: '/src/assets/snacks.jpeg'
+      image: snacksImage
     },
     {
       id: 'sweets',
@@ -39,7 +43,7 @@ const CategoriesSection = () => {
       nameTA: 'இனிப்பு',
       descEN: 'Handcrafted sweet treats',
       descTA: 'கையால் செய்யப்பட்ட இனிப்புகள்',
-      image: '/src/assets/sweets.jpeg'
+      image: sweetsImage
     }
   ];
 
