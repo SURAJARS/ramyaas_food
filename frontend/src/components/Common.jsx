@@ -46,7 +46,7 @@ export const SnackCard = ({ snack }) => {
     const variantQty = selectedVariant?.quantity || '';
     const price = selectedVariant?.price || snack.price;
     const message = `Hi, I'm interested in ${snackName} (${variantQty}). Price: ₹${price}`;
-    const whatsappUrl = `https://wa.me/919994952958?text=${encodeURIComponent(message)}`;
+    const whatsappUrl = `https://wa.me/917373105165?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
   };
 

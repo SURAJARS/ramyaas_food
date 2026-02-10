@@ -74,7 +74,7 @@ const Contact = () => {
               <span className="text-2xl">📞</span>
             </div>
             <h3 className="font-semibold text-gray-800 mb-2">Phone</h3>
-            <p className="text-gray-600">+91 9994952958</p>
+            <p className="text-gray-600">+91 8248125388</p>
           </div>
           <div className="text-center">
             <div className="bg-ramyaas-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">

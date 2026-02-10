@@ -134,7 +134,7 @@ export const Footer = () => {
             <h4 className="font-semibold text-gray-800 mb-4">Contact</h4>
             <p className="text-sm text-gray-600">
               Email: ramyakumar031998@gmail.com<br />
-              Phone: +91 9994952958<br />
+              Phone: +91 8248125388<br />
               WhatsApp: +91 7373105165<br />
               © 2024 RAMYAAS
             </p>
