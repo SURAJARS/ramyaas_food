@@ -159,7 +159,7 @@ const ProductCarousel = ({ products }) => {
               <div className="h-12 md:h-16 w-1 bg-gradient-to-b from-amber-400 to-transparent"></div>
               <p className="text-xs md:text-sm text-gray-600 max-w-[100px]">
                 {language === 'ta' 
-                  ? '100% கையால் தயாரிக்கப்பட்ட, பரிசாரம் இல்லை' 
+                  ? '100% கைகளால் செய்யப்பட்டது, சுத்தமான தரம்' 
                   : '100% Handmade, Pure Quality'}
               </p>
             </div>
