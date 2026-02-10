@@ -1,11 +1,27 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { gettext } from '../utils/translations';
 import logoImage from '../assets/logo.png';
+import ProductCarousel from '../components/ProductCarousel';
+import { snackApi } from '../api/index';
 
 const Home = () => {
   const { language } = useLanguage();
+  const [featuredSnacks, setFeaturedSnacks] = useState([]);
+
+  useEffect(() => {
+    const fetchSnacks = async () => {
+      try {
+        const response = await snackApi.getAllSnacks();
+        // Get first 5 snacks for carousel
+        setFeaturedSnacks(response.data.slice(0, 5));
+      } catch (error) {
+        console.error('Error fetching snacks:', error);
+      }
+    };
+    fetchSnacks();
+  }, []);
 
   return (
     <div className="min-h-screen bg-white">
@@ -51,6 +67,9 @@ const Home = () => {
           </Link>
         </div>
       </section>
+
+      {/* Product Carousel Section */}
+      {featuredSnacks.length > 0 && <ProductCarousel products={featuredSnacks} />}
 
       {/* Stats Section */}
       <section className="bg-ramyaas-50 py-16">
