@@ -74,7 +74,7 @@ const ProductCarousel = ({ products }) => {
 
   // Create an emotional headline based on product
   const emotionalHeadlines = {
-    ta: ['தங்கப் பொறிப்பு. தூய மகிழ்ச்சி.', 'சுவையின் சொர்க்கம்', 'ஐம்பொறிகளுக்கான விருந்து'],
+    ta: ['மொறுமொறுப்பான சுவை. தூய சந்தோஷம்', 'சுவையின் சொர்க்கம்', 'ஒவ்வொரு துண்டிலும் பாரம்பாரியத்தின் மந்திரம்'],
     en: ['Golden Crunch. Pure Happiness.', 'A Taste of Heaven', 'Traditional Magic in Every Bite']
   };
   const emotionalHeadline = emotionalHeadlines[language][currentIndex % emotionalHeadlines[language].length];
