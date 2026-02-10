@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 
 const ProductCarousel = ({ products }) => {
@@ -165,7 +166,10 @@ const ProductCarousel = ({ products }) => {
 
             {/* CTA Button */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mt-10">
-              <button className="group relative px-8 py-4 text-lg font-semibold text-white overflow-hidden rounded-lg">
+              <Link
+                to="/snacks"
+                className="group relative px-8 py-4 text-lg font-semibold text-white overflow-hidden rounded-lg inline-flex items-center justify-center gap-2"
+              >
                 <div className="absolute inset-0 bg-gradient-to-r from-amber-700 to-orange-600 group-hover:from-amber-800 group-hover:to-orange-700 transition-all duration-300"></div>
                 <span className="relative flex items-center justify-center gap-2">
                   {language === 'ta' ? 'இப்போது வாங்கவும்' : 'Shop Now'}
@@ -173,7 +177,7 @@ const ProductCarousel = ({ products }) => {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                   </svg>
                 </span>
-              </button>
+              </Link>
             </div>
 
             {/* Slide Indicators with Progress */}
