@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useLanguage } from '../context/LanguageContext';
-import feedback1 from '../assets/feedback/feedback1_1.jpeg';
-import feedback2 from '../assets/feedback/feedback2_1.jpeg';
-import feedback3 from '../assets/feedback/feedback3_1.jpeg';
-import feedback4 from '../assets/feedback/feedback4_1.jpeg';
+import feedback1 from '../assets/feedback/feed1_1.jpeg';
+import feedback2 from '../assets/feedback/feed2_1.jpeg';
+import feedback3 from '../assets/feedback/feed3_1.jpeg';
+import feedback4 from '../assets/feedback/feed4_1.jpeg';
 
 const FeedbackSection = () => {
   const { language } = useLanguage();
