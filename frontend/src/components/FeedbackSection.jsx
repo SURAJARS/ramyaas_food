@@ -199,11 +199,11 @@ const FeedbackSection = () => {
         {/* Bottom CTA */}
         <div className="mt-16 text-center">
           <p className="text-amber-900 font-medium mb-4">
-            {language === 'ta' ? '500+ খুশি গ্রাহক আমাদের উপর বিশ্বাস করেন' : '500+ Happy Customers Trust Us'}
+            {language === 'ta' ? '500+ பேர் எங்களை நம்பி வாழ்க்கை' : '500+ Happy Customers Trust Us'}
           </p>
           <div className="inline-block px-8 py-3 rounded-full bg-amber-100/50 border border-amber-300/50 backdrop-blur-sm">
             <p className="text-amber-900 font-semibold">
-              {language === 'ta' ? '⭐ 4.9/5 রেটিং' : '⭐ 4.9/5 Rating'}
+              {language === 'ta' ? '⭐ 4.9/5 மதிப்பீடு' : '⭐ 4.9/5 Rating'}
             </p>
           </div>
         </div>
