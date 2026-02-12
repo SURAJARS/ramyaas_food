@@ -32,12 +32,7 @@ const FAQSection = () => {
     },
     {
 
-      questionEN: 'How do I track my order?',
-      questionTA: 'என் ஆர்டரைப் பதிவு செய்வது எப்படி?',
-      answerEN: 'Once your order is shipped, you will receive a tracking number via email. You can use this number to track your package on the courier website.',
-      answerTA: 'உங்கள் ஆர்டர் அனுப்பப்பட்ட பிறகு, நீங்கள் மின்னஞ்சலின் மூலம் ட்র்যாக்கிங் எண்ணைப் பெறுவீர்கள்। கூரியர் வெப்சைட்டில் உங்கள் பொருண்டைப் பதிவு செய்ய இந்த எண்ணைப் பயன்படுத்தலாம்।'
-    },
-    {
+
       questionEN: 'What payment methods do you accept?',
       questionTA: 'நீங்கள் எந்த பணம் செலுத்த முறைகளை ஏற்றுக்கொள்கிறீர்கள்?',
       answerEN: 'We accept all major payment methods including credit cards, debit cards, digital wallets, and UPI transfers. All payments are secure and encrypted.',
