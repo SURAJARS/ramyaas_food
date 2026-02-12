@@ -31,12 +31,7 @@ const FAQSection = () => {
       answerTA: 'நிச்சயமாக! கார்பொரேட் பரிசுகள், மறுவிற்பனையாளர்கள் மற்றும் நிகழ்வுகளுக்கான மொத்த ஆர்டர்களை நாங்கள் வரவேற்கிறோம்। আমরা போட்டி மொத்த விலை வழங்குகிறோம்।'
     },
     {
-      questionEN: 'Are your products suitable for people with allergies?',
-      questionTA: 'உங்கள் பொருட்கள் ஒவ்வாமை உள்ளவர்களுக்கு பொருத்தமாக உள்ளதா?',
-      answerEN: 'Our products contain common allergens like nuts, sesame, and dairy. Please check product descriptions for detailed ingredient information. If you have specific allergies, contact us before ordering.',
-      answerTA: 'எங்கள் பொருட்களில் நட்கள், எள், மற்றும் பால் போன்ற பொதுவான அலர்ஜன்கள் உள்ளன. விரிவான உপাদான தகவலுக்கு পொருட்களின் விளக்கத்தைப் பார்க்கவும்। உங்களுக்கு குறிப்பிட்ட ஒவ்வாமை இருந்தால், ஆர்டர் செய்வதற்கு முன் எங்களைத் தொடர்பு கொள்ளவும்।'
-    },
-    {
+
       questionEN: 'How do I track my order?',
       questionTA: 'என் ஆர்டரைப் பதிவு செய்வது எப்படி?',
       answerEN: 'Once your order is shipped, you will receive a tracking number via email. You can use this number to track your package on the courier website.',
