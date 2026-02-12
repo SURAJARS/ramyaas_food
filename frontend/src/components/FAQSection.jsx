@@ -28,7 +28,7 @@ const FAQSection = () => {
       questionEN: 'Can I place bulk orders?',
       questionTA: 'நான் மொத்த ஆர்டர்கள் வைக்க முடியுமா?',
       answerEN: 'Absolutely! We welcome bulk orders for corporate gifts, resellers, and events. We offer competitive bulk pricing. Please contact us to discuss your specific requirements.',
-      answerTA: 'நிச்சயமாக! கார்பொரேட் பரிசுகள், மறுவிற்பனையாளர்கள் மற்றும் நிகழ்வுகளுக்கான மொத்த ஆர்டர்களை நாங்கள் வரவேற்கிறோம்। আমরা போட்டி மொத்த விலை வழங்குகிறோம்।'
+      answerTA: 'நிச்சயமாக! கார்பொரேட் பரிசுகள், மறுவிற்பனையாளர்கள் மற்றும் நிகழ்வுகளுக்கான மொத்த ஆர்டர்களை நாங்கள் வரவேற்கிறோம்। நாங்கள் போட்டி மொத்த விலை வழங்குகிறோம்।'
     },
     {
 
