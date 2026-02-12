@@ -182,13 +182,10 @@ Our website may use cookies to enhance your browsing experience.
 6. External Links
 Our website contains links to external sites. We are not responsible for the privacy practices or content of these external sites.
 
-7. Your Rights
-You have the right to access, update, or delete your personal information at any time by contacting us.
-
-8. Changes to Privacy Policy
+7. Changes to Privacy Policy
 We may update this privacy policy periodically.
 
-9. Contact Us
+8. Contact Us
 If you have any questions about our privacy policy, please contact us at: ramyakumar031998@gmail.com`,
       contentTA: `ரகசிய கொள்கை
 
@@ -213,13 +210,10 @@ If you have any questions about our privacy policy, please contact us at: ramyak
 6. வெளிப்புற இணைப்புகள்
 எங்கள் வெப்சைட் வெளிப்புற தளங்களுடன் இணைப்புகளைக் கொண்டுள்ளது.
 
-7. உங்கள் உரிமைகள்
-உங்கள் ব்யக்திக்தான தகவலை அணுக, புதுப்பிக்க அல்லது நீக்க உங்களுக்கு உரிமை உள்ளது.
-
-8. ரகசிய கொள்கை மாற்றங்கள்
+7. ரகசிய கொள்கை மாற்றங்கள்
 இந்த கொள்கையில் எதிர்காலத்தில் மாற்றங்கள் ஏற்படலாம்.
 
-9. எங்களைத் தொடர்பு கொள்ளவும்
+8. எங்களைத் தொடர்பு கொள்ளவும்
 ஏதேனும் கேள்விகள் இருந்தால் ramyakumar031998@gmail.com என்ற மின்னஞ்சலுக்கு தொடர்பு கொள்ளவும்.`
     },
     {
