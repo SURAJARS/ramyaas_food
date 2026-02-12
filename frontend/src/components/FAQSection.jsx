@@ -36,7 +36,7 @@ const FAQSection = () => {
       questionEN: 'What payment methods do you accept?',
       questionTA: 'நீங்கள் எந்த பணம் செலுத்த முறைகளை ஏற்றுக்கொள்கிறீர்கள்?',
       answerEN: 'We accept all major payment methods including credit cards, debit cards, digital wallets, and UPI transfers. All payments are secure and encrypted.',
-      answerTA: 'நாங்கள் கிரெடிட் கார்டு, டெபிட் கார்டு, டிজிटல் பணப்பெட்டகம், மற்றும் UPI பரிமாற்றம் உட்பட அனைத்து முக்கிய பணம் செலுத்த முறைகளை ஏற்றுக்கொள்கிறோம்।'
+      answerTA: 'நாங்கள் கிரெடிட் கார்டு, டெபிட் கார்டு, டிஜிட்டல் பணப்பெட்டகம், மற்றும் UPI பரிமாற்றம் உட்பட அனைத்து முக்கிய பணம் செலுத்த முறைகளை ஏற்றுக்கொள்கிறோம்।'
     },
     {
       questionEN: 'Can I cancel or modify my order?',
