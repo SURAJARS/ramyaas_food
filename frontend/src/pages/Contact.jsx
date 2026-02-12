@@ -66,8 +66,8 @@ const Contact = () => {
             <div className="bg-ramyaas-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
               <span className="text-2xl">📍</span>
             </div>
-            <h3 className="font-semibold text-gray-800 mb-2">Address</h3>
-            <p className="text-gray-600">City, State, India</p>
+            <h3 className="font-semibold text-gray-800 mb-2">{language === 'ta' ? 'முகவரி' : 'Address'}</h3>
+            <p className="text-gray-600">{language === 'ta' ? 'பட்டுக்கோட்டை நகரம், தஞ்சாவூர் மாவட்டம், தமிழ்நாடு மாநிலம்' : 'Pattukkottai City, Thanjavur District, Tamilnadu State'}</p>
           </div>
           <div className="text-center">
             <div className="bg-ramyaas-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
