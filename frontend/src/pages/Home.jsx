@@ -6,6 +6,7 @@ import ProductCarousel from '../components/ProductCarousel';
 import CategoriesSection from '../components/CategoriesSection';
 import FeedbackSection from '../components/FeedbackSection';
 import ProductShowcase from '../components/ProductShowcase';
+import FAQSection from '../components/FAQSection';
 import logoImage from '../assets/logo.png';
 import { snackApi } from '../utils/api';
 
@@ -117,7 +118,7 @@ const Home = () => {
             </p>
             <p className="text-gray-600">
               {language === 'ta'
-                ? 'ராம்யாஸ் பாரம்பரியமான செய்முறைகளைப் பயன்படுத்தி சுவையான வீட்டு உணவுகள் தயாரிக்கிறது. எங்கள் பொடி, ஊறுகாய் மற்றும் காரணங்கள் சுத்தமான மூலப்பொருட்களுடன் தயாரிக்கப்படுகிறது.'
+                ? 'ரம்யாஸ் பாரம்பரியமான செய்முறைகளைப் பயன்படுத்தி சுவையான வீட்டு உணவுகள் தயாரிக்கிறது. எங்கள் பொடி, ஊறுகாய் மற்றும் காரங்கள் சுத்தமான மூலப்பொருட்களுடன் தயாரிக்கப்படுகிறது.'
                 : 'RAMYAAS prepares delicious homemade foods using traditional recipes. Our podi, pickle, and snacks are made with pure ingredients.'}
             </p>
           </div>
@@ -180,6 +181,9 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+      {/* FAQ Section */}
+      <FAQSection />
     </div>
   );
 };

@@ -15,33 +15,21 @@ const FeedbackSection = () => {
   const feedbackCards = [
     {
       id: 1,
-      name: 'Priya Kumar',
-      location: 'Chennai, Tamil Nadu',
-      feedback: 'Absolutely love the quality! Fresh and delicious every time.',
       image: feedback1,
       rotation: -2
     },
     {
       id: 2,
-      name: 'Rajesh Singh',
-      location: 'Bangalore, Karnataka',
-      feedback: 'Best homemade snacks I have ever tasted. Highly recommended!',
       image: feedback2,
       rotation: 2
     },
     {
       id: 3,
-      name: 'Ananya Patel',
-      location: 'Hyderabad, Telangana',
-      feedback: 'The podi and pickles are exactly what I needed. Pure quality.',
       image: feedback3,
       rotation: -2
     },
     {
       id: 4,
-      name: 'Vikram Reddy',
-      location: 'Mumbai, Maharashtra',
-      feedback: 'Premium quality and amazing taste. Worth every rupee!',
       image: feedback4,
       rotation: 2
     }
@@ -170,20 +158,7 @@ const FeedbackSection = () => {
                     />
 
                     {/* Gradient overlay at bottom for text */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
-
-                    {/* Customer info */}
-                    <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
-                      <h3 className="font-serif font-bold text-lg mb-1">
-                        {card.name}
-                      </h3>
-                      <p className="text-xs text-amber-100/80 mb-3">
-                        📍 {card.location}
-                      </p>
-                      <p className="text-sm leading-snug text-white/90">
-                        "{card.feedback}"
-                      </p>
-                    </div>
+                    {/* Removed: customer info overlay with names and comments */}
 
                     {/* Star rating */}
                     <div className="absolute top-4 right-4 bg-black/40 backdrop-blur-sm rounded-full px-3 py-2">
@@ -199,7 +174,7 @@ const FeedbackSection = () => {
         {/* Bottom CTA */}
         <div className="mt-16 text-center">
           <p className="text-amber-900 font-medium mb-4">
-            {language === 'ta' ? '500+ பேர் எங்களை நம்பி வாழ்க்கை' : '500+ Happy Customers Trust Us'}
+            {language === 'ta' ? '500+ பேர் எங்களை நம்பிக்கொண்டுள்ளனர்' : '500+ Happy Customers Trust Us'}
           </p>
           <div className="inline-block px-8 py-3 rounded-full bg-amber-100/50 border border-amber-300/50 backdrop-blur-sm">
             <p className="text-amber-900 font-semibold">
