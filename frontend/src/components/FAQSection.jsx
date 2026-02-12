@@ -55,12 +55,7 @@ const FAQSection = () => {
       answerEN: 'Yes! We create customized corporate gift packages. Contact us with your requirements, budget, and delivery date, and we will prepare the perfect gift package for your team.',
       answerTA: 'ஆம்! நாங்கள் தனிப்பயன் கார்பொரேட் பரிசு பொதிகளை உருவாக்குகிறோம். உங்கள் தேவைகள், பட்ஜெட், மற்றும் டெலிவரி தேதியுடன் எங்களைத் தொடர்பு கொள்ளவும்।'
     },
-    {
-      questionEN: 'What is your return policy?',
-      questionTA: 'உங்கள் திரும்பப் பெறும் கொள்கை என்ன?',
-      answerEN: 'We offer a 7-day return policy for unopened and unused products in original packaging. For damaged or defective products, contact us immediately with photos for a replacement or refund.',
-      answerTA: 'அசலான பொதிபுக்குள் திறக்கப்படாத மற்றும் பயன்படுத்தப்படாத பொருட்களுக்கு 7 நாட்களின் திரும்பப் பெறும் கொள்கை வழங்குகிறோம்। சேதமடைந்த அல்லது குறைபாடுள்ள பொருட்களுக்கு, புகைப்படங்களுடன் உடனடியாக எங்களைத் தொடர்பு கொள்ளவும்।'
-    },
+
 
   ];
 
