@@ -164,7 +164,7 @@ const OrderConfirmation = () => {
               </div>
             )}
             <div className="flex justify-between text-lg font-bold text-gray-800 pt-3 border-t border-gray-200">
-              <span>{language === 'ta' ? 'মোট' : 'Total'}</span>
+              <span>{language === 'ta' ? 'மொத்தம்' : 'Total'}</span>
               <span>₹{order.totalAmount.toFixed(2)}</span>
             </div>
           </div>

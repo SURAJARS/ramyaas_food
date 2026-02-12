@@ -66,12 +66,7 @@ const FAQSection = () => {
       answerEN: 'We offer a 7-day return policy for unopened and unused products in original packaging. For damaged or defective products, contact us immediately with photos for a replacement or refund.',
       answerTA: 'அசலான பொதிபுக்குள் திறக்கப்படாத மற்றும் பயன்படுத்தப்படாத பொருட்களுக்கு 7 நாட்களின் திரும்பப் பெறும் கொள்கை வழங்குகிறோம்। சேதமடைந்த அல்லது குறைபாடுள்ள பொருட்களுக்கு, புகைப்படங்களுடன் உடனடியாக எங்களைத் தொடர்பு கொள்ளவும்।'
     },
-    {
-      questionEN: 'Do you have a physical store?',
-      questionTA: 'உங்களுக்கு ஒரு உடல் கடை உள்ளதா?',
-      answerEN: 'Currently, we operate as an online business. However, you can place orders online and we deliver to your doorstep. Contact us via WhatsApp for any special requests.',
-      answerTA: 'தற்போது, நாங்கள் ஆன்லைன் ব்যবসாயமாக செயல்படுகிறோம். இருப்பினும், நீங்கள் ஆன்லைனில் ஆர்டர் வைக்கலாம் மற்றும் நாங்கள் உங்கள் வீட்டுவாசலுக்கு டெலிவரி செய்கிறோம்।'
-    }
+
   ];
 
   return (

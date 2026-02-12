@@ -278,7 +278,7 @@ const Checkout = () => {
             </div>
 
             <div className="flex justify-between text-lg font-bold text-gray-800">
-              <span>{language === 'ta' ? 'মোট' : 'Total'}</span>
+              <span>{language === 'ta' ? 'மொத்தம்' : 'Total'}</span>
               <span>₹{totalAmount.toFixed(2)}</span>
             </div>
           </div>
