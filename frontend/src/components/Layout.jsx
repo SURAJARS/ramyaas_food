@@ -503,7 +503,7 @@ WhatsApp: +91 7373105165
               {language === 'ta' ? 'எங்களைப் பின்தொடரவும்' : 'Follow Us'}
             </h4>
             <p className="text-sm text-gray-600 mb-4">
-              {language === 'ta' ? 'சামাजिक মাध्যमে আমাদের সাথে যোগাযোগ করুন' : 'Connect with us on social media'}
+              {language === 'ta' ? 'சமூக வலைத்தளங்களில் எங்களுடன் தொடர்பு கொள்ளவும்' : 'Connect with us on social media'}
             </p>
             <div className="flex gap-3">
               <a href="#" className="text-ramyaas-600 hover:text-ramyaas-700 text-lg">📱</a>
@@ -516,7 +516,7 @@ WhatsApp: +91 7373105165
         {/* Policies Section */}
         <div className="mb-12 border-t border-gray-300 pt-8">
           <h3 className="font-bold text-lg text-ramyaas-700 mb-6">
-            {language === 'ta' ? 'নীতি' : 'Policy'}
+            {language === 'ta' ? 'கொள்கைகள்' : 'Policy'}
           </h3>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -547,10 +547,10 @@ WhatsApp: +91 7373105165
         {/* Copyright */}
         <div className="border-t border-gray-300 pt-8 text-center">
           <p className="text-sm text-gray-600">
-            © 2024 RAMYAAS. {language === 'ta' ? 'அனைத்து உரிமைகளும் সংরক্ষিত।' : 'All rights reserved.'}
+            © 2024 RAMYAAS. {language === 'ta' ? 'அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டுள்ளது.' : 'All rights reserved.'}
           </p>
           <p className="text-xs text-gray-500 mt-2">
-            {language === 'ta' ? 'வெப்சைடு ডিজাইন করেছেন Ramya & Team' : 'Website designed by Ramya & Team'}
+            {language === 'ta' ? 'வெப்சைட் வடிப்பிக்கப்பட்ட: Ramya & Team' : 'Website designed by Ramya & Team'}
           </p>
         </div>
       </div>

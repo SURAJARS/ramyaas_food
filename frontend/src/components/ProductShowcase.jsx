@@ -192,7 +192,7 @@ const ProductShowcase = () => {
       {/* Subtle bottom text */}
       <div className="text-center mt-12">
         <p className="text-amber-900/60 font-light text-sm tracking-wide">
-          {language === 'ta' ? 'আমাদের প্রিমিয়াম সৃষ্টি অন্বেষণ করুন' : 'Discover Our Premium Creations'}
+          {language === 'ta' ? 'எங்கள் பிரீமிய கிரியேशन்களைக் கண்டறியுங்கள்' : 'Discover Our Premium Creations'}
         </p>
       </div>
     </section>

@@ -123,17 +123,17 @@ const FAQSection = () => {
         {/* Additional Help */}
         <div className="mt-16 bg-gradient-to-r from-ramyaas-100 to-amber-100 rounded-lg p-8 text-center border border-ramyaas-200">
           <h3 className="text-2xl font-bold text-ramyaas-700 mb-3">
-            {language === 'ta' ? 'আরও সাহায্য প্রয়োজন?' : 'Need More Help?'}
+            {language === 'ta' ? 'இன்னும் உதவி தேவையா?' : 'Need More Help?'}
           </h3>
           <p className="text-gray-700 mb-6">
-            {language === 'ta' ? 'এখনও আপনার উত্তর খুঁজে পাননি? আমাদের দলে যোগাযোগ করুন এবং আমরা সাহায্য করব।' : 'Still have questions? Contact our team and we\'ll be happy to help!'}
+            {language === 'ta' ? 'இன்னும் கேள்விகள் உள்ளதா? எங்கள் குழுவைத் தொடர்பு கொள்ளவும் மற்றும் நாங்கள் உதவ மகிழ்ச்சி கொள்வோம்!' : 'Still have questions? Contact our team and we\'ll be happy to help!'}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
               href="mailto:ramyakumar031998@gmail.com"
               className="px-6 py-3 bg-ramyaas-600 text-white rounded-lg font-semibold hover:bg-ramyaas-700 transition-colors"
             >
-              {language === 'ta' ? 'ইমেইল করুন' : 'Email Us'}
+              {language === 'ta' ? 'மின்னஞ்சல் அனுப்பவும்' : 'Email Us'}
             </a>
             <a
               href="https://wa.me/917373105165"
@@ -141,7 +141,7 @@ const FAQSection = () => {
               rel="noopener noreferrer"
               className="px-6 py-3 bg-green-500 text-white rounded-lg font-semibold hover:bg-green-600 transition-colors"
             >
-              {language === 'ta' ? 'WhatsApp তে যোগাযোগ করুন' : 'Chat on WhatsApp'}
+              {language === 'ta' ? 'WhatsApp இல் தொடர்பு கொள்ளவும்' : 'Chat on WhatsApp'}
             </a>
           </div>
         </div>
