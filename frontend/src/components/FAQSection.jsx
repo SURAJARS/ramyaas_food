@@ -8,9 +8,9 @@ const FAQSection = () => {
   const faqs = [
     {
       questionEN: 'What are the ingredients used in your products?',
-      questionTA: 'உங்கள் பொருட்களில் பயன்படுத்தப்படும் உপাদानங்கள் என்ன?',
+      questionTA: 'உங்கள் பொருட்களில் பயன்படுத்தப்படும் உபாதானங்கள் என்ன?',
       answerEN: 'All our products are made with pure, natural ingredients without any preservatives, artificial additives, or palm oil. We prioritize quality and health in every product we make.',
-      answerTA: 'எங்கள் அனைத்து பொருட்களும் சுத்தமான, இயற்கையான உপाদனங்களுடன் தயாரிக்கப்பட்டுள்ளன. எந்த பாதுகாப்பு, செயற்கை சேர்க்கை அல்லது பாமாயெல்ளை பயன்படுத்தப்படவில்லை।'
+      answerTA: 'எங்கள் அனைத்து பொருட்களும் சுத்தமான, இயற்கையான உபாதானங்களுடன் தயாரிக்கப்பட்டுள்ளன. எந்த பாதுகாப்பு, செயற்கை சேர்க்கை அல்லது பாமாயெல்ளை பயன்படுத்தப்படவில்லை।'
     },
     {
       questionEN: 'Do you offer customized catering services?',
