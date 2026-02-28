@@ -123,8 +123,8 @@ PORT=5000
 MONGODB_URI=mongodb+srv://ramyaas:ramyaas@ramyaasfood.pglu751.mongodb.net/?appName=ramyaasfood
 EMAIL_USER=ramyakumar031998@gmail.com
 EMAIL_PASSWORD=dzwghoxuscwxaebw
-RAZORPAY_KEY_ID=rzp_live_SC9gIr4xzqvlPK
-RAZORPAY_KEY_SECRET=Acg5jobwcgREddPPBhTGsPuV
+RAZORPAY_KEY_ID=rzp_live_SLS8G9tYbnCwiF
+RAZORPAY_KEY_SECRET=2B7NjHNZ83b66JEoJSLiz8ao
 FRONTEND_URL=https://yourdomain.com
 NODE_ENV=production
 ```
@@ -159,8 +159,8 @@ Verify `backend/package.json` has:
    - `MONGODB_URI`: `mongodb+srv://ramyaas:ramyaas@ramyaasfood.pglu751.mongodb.net/?appName=ramyaasfood`
    - `EMAIL_USER`: `ramyakumar031998@gmail.com`
    - `EMAIL_PASSWORD`: `dzwghoxuscwxaebw`
-   - `RAZORPAY_KEY_ID`: `rzp_live_SC9gIr4xzqvlPK`
-   - `RAZORPAY_KEY_SECRET`: `Acg5jobwcgREddPPBhTGsPuV`
+   - `RAZORPAY_KEY_ID`: `rzp_live_SLS8G9tYbnCwiF`
+   - `RAZORPAY_KEY_SECRET`: `2B7NjHNZ83b66JEoJSLiz8ao`
    - `FRONTEND_URL`: `https://yourdomain.com` (or Vercel URL)
    - `NODE_ENV`: `production`
 6. Click "Create Web Service"
