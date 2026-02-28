@@ -58,6 +58,7 @@ export const Header = () => {
 
 export const Navigation = () => {
   const { language } = useLanguage();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navItems = [
     { key: 'home', path: '/' },
@@ -69,10 +70,13 @@ export const Navigation = () => {
     { key: 'catering', path: '/catering' },
   ];
 
+  const closeMenu = () => setMobileMenuOpen(false);
+
   return (
     <nav className="bg-white border-b border-gray-100 sticky top-16 z-40">
       <div className="max-w-7xl mx-auto px-4">
-        <div className="flex gap-8 overflow-x-auto py-3">
+        {/* Desktop Navigation */}
+        <div className="hidden md:flex gap-8 py-3">
           {navItems.map(item => (
             <NavLink
               key={item.path}
@@ -80,7 +84,7 @@ export const Navigation = () => {
               className={({ isActive }) =>
                 `text-sm font-medium whitespace-nowrap transition-smooth ${
                   isActive
-                    ? 'text-ramyaas-700 font-bold'
+                    ? 'text-ramyaas-700 font-bold border-b-2 border-ramyaas-600'
                     : 'text-gray-600 hover:text-ramyaas-600'
                 }`
               }
@@ -89,6 +93,39 @@ export const Navigation = () => {
             </NavLink>
           ))}
         </div>
+
+        {/* Mobile Navigation - Hamburger Menu */}
+        <div className="md:hidden flex items-center justify-between py-3">
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="text-2xl text-gray-600 hover:text-ramyaas-600 transition-smooth"
+          >
+            ☰
+          </button>
+          <span className="text-xs text-gray-500">Menu</span>
+        </div>
+
+        {/* Mobile Menu Dropdown */}
+        {mobileMenuOpen && (
+          <div className="md:hidden bg-gray-50 border-t border-gray-200 py-2 px-2 space-y-1 animate-in">
+            {navItems.map(item => (
+              <NavLink
+                key={item.path}
+                to={item.path}
+                onClick={closeMenu}
+                className={({ isActive }) =>
+                  `block px-4 py-3 rounded-lg text-sm font-medium transition-smooth ${
+                    isActive
+                      ? 'bg-ramyaas-100 text-ramyaas-700 font-bold'
+                      : 'text-gray-600 hover:bg-gray-100'
+                  }`
+                }
+              >
+                {gettext(item.key, language)}
+              </NavLink>
+            ))}
+          </div>
+        )}
       </div>
     </nav>
   );
