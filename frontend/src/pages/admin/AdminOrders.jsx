@@ -7,6 +7,8 @@ const AdminOrders = () => {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [selectedOrder, setSelectedOrder] = useState(null);
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     fetchOrders();
@@ -106,6 +108,150 @@ const AdminOrders = () => {
     );
   };
 
+  const OrderDetailModal = ({ order, isOpen, onClose }) => {
+    if (!isOpen || !order) return null;
+
+    return (
+      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+        <div className="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+          {/* Header */}
+          <div className="sticky top-0 bg-ramyaas-600 text-white p-6 flex justify-between items-center">
+            <div>
+              <h2 className="text-2xl font-bold">{order.orderNumber}</h2>
+              <p className="text-ramyaas-100 text-sm mt-1">
+                {new Date(order.createdAt).toLocaleDateString()} at {new Date(order.createdAt).toLocaleTimeString()}
+              </p>
+            </div>
+            <button
+              onClick={onClose}
+              className="text-white hover:text-ramyaas-100 text-2xl font-bold"
+            >
+              ✕
+            </button>
+          </div>
+
+          <div className="p-6 space-y-6">
+            {/* Customer Info */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="bg-blue-50 p-4 rounded-lg">
+                <h3 className="text-lg font-semibold text-blue-900 mb-3">👤 Customer Info</h3>
+                <div className="space-y-2 text-sm">
+                  <p><strong>Name:</strong> {order.customer?.name}</p>
+                  <p><strong>Email:</strong> {order.customer?.email}</p>
+                  <p><strong>Phone:</strong> {order.customer?.phone}</p>
+                </div>
+              </div>
+
+              <div className="bg-purple-50 p-4 rounded-lg">
+                <h3 className="text-lg font-semibold text-purple-900 mb-3">📍 Shipping Address</h3>
+                <div className="space-y-1 text-sm">
+                  <p>{order.customer?.address}</p>
+                  <p>{order.customer?.city}, {order.customer?.zipCode}</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Order Status & Payment */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="bg-green-50 p-4 rounded-lg">
+                <p className="text-xs text-green-600 font-semibold mb-1">PAYMENT STATUS</p>
+                {renderPaymentBadge(order.paymentStatus)}
+              </div>
+              <div className="bg-indigo-50 p-4 rounded-lg">
+                <p className="text-xs text-indigo-600 font-semibold mb-1">ORDER STATUS</p>
+                {renderOrderStatus(order.orderStatus)}
+              </div>
+              <div className="bg-orange-50 p-4 rounded-lg">
+                <p className="text-xs text-orange-600 font-semibold mb-1">PAYMENT ID</p>
+                <p className="text-xs font-mono bg-white p-2 rounded border border-orange-200">
+                  {order.razorpayPaymentId || 'N/A'}
+                </p>
+              </div>
+            </div>
+
+            {/* Items */}
+            {order.items && order.items.length > 0 ? (
+              <div className="bg-gray-50 p-4 rounded-lg">
+                <h3 className="text-lg font-semibold mb-4">📦 Ordered Items</h3>
+                <table className="w-full text-sm">
+                  <thead className="bg-gray-200 border-b">
+                    <tr>
+                      <th className="px-3 py-2 text-left">Product</th>
+                      <th className="px-3 py-2 text-center">Price</th>
+                      <th className="px-3 py-2 text-center">Qty</th>
+                      <th className="px-3 py-2 text-center">Unit</th>
+                      <th className="px-3 py-2 text-right">Amount</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {order.items.map((item, idx) => (
+                      <tr key={idx} className="border-b hover:bg-gray-100">
+                        <td className="px-3 py-2">{item.name || item.nameTA}</td>
+                        <td className="px-3 py-2 text-center">₹{item.price || 0}</td>
+                        <td className="px-3 py-2 text-center font-semibold">{item.quantity}</td>
+                        <td className="px-3 py-2 text-center">{item.quantityUnit || 'pcs'}</td>
+                        <td className="px-3 py-2 text-right font-semibold">
+                          ₹{((item.price || 0) * (item.quantity || 0)).toLocaleString()}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            ) : (
+              <div className="bg-gray-50 p-4 rounded-lg text-center text-gray-500">
+                No items in this order
+              </div>
+            )}
+
+            {/* Price Breakdown */}
+            <div className="bg-amber-50 p-4 rounded-lg">
+              <h3 className="text-lg font-semibold mb-3">💰 Price Breakdown</h3>
+              <div className="space-y-2 text-sm">
+                <div className="flex justify-between">
+                  <span>Subtotal:</span>
+                  <span className="font-semibold">₹{(order.subtotal || 0).toLocaleString()}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Shipping Cost:</span>
+                  <span className="font-semibold">₹{(order.shippingCost || 0).toLocaleString()}</span>
+                </div>
+                {order.discountAmount > 0 && (
+                  <div className="flex justify-between text-green-600">
+                    <span>Discount ({order.discountCode}):</span>
+                    <span className="font-semibold">-₹{(order.discountAmount || 0).toLocaleString()}</span>
+                  </div>
+                )}
+                <div className="border-t border-amber-200 pt-2 mt-2 flex justify-between">
+                  <span className="font-bold">Total Amount:</span>
+                  <span className="text-xl font-bold text-ramyaas-600">₹{(order.totalAmount || 0).toLocaleString()}</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Notes */}
+            {order.notes && (
+              <div className="bg-blue-50 p-4 rounded-lg">
+                <h3 className="text-sm font-semibold text-blue-900 mb-2">📝 Notes</h3>
+                <p className="text-sm text-blue-800">{order.notes}</p>
+              </div>
+            )}
+          </div>
+
+          {/* Footer */}
+          <div className="sticky bottom-0 bg-gray-100 p-4 flex justify-end gap-3">
+            <button
+              onClick={onClose}
+              className="px-4 py-2 bg-gray-300 text-gray-800 rounded-lg font-medium hover:bg-gray-400"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   return (
     <div className="space-y-6">
       <h2 className="text-2xl font-bold text-ramyaas-700">Orders & Enquiries</h2>
@@ -200,15 +346,8 @@ const AdminOrders = () => {
                         <td className="px-6 py-3">
                           <button
                             onClick={() => {
-                              // Show order details
-                              alert(JSON.stringify({
-                                orderNumber: order.orderNumber,
-                                customer: order.customer,
-                                items: order.items,
-                                amount: order.totalAmount,
-                                paymentId: order.razorpayPaymentId,
-                                notes: order.notes
-                              }, null, 2));
+                              setSelectedOrder(order);
+                              setShowModal(true);
                             }}
                             className="text-blue-600 hover:underline text-xs font-medium"
                           >
@@ -254,6 +393,16 @@ const AdminOrders = () => {
           </table>
         </div>
       )}
+
+      {/* Order Detail Modal */}
+      <OrderDetailModal 
+        order={selectedOrder} 
+        isOpen={showModal} 
+        onClose={() => {
+          setShowModal(false);
+          setSelectedOrder(null);
+        }}
+      />
     </div>
   );
 };
