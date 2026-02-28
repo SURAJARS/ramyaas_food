@@ -14,6 +14,7 @@ const AdminOrders = () => {
 
   const fetchOrders = async () => {
     setLoading(true);
+    setError(null);
     try {
       let response;
       if (orderType === 'catering') {
@@ -23,9 +24,13 @@ const AdminOrders = () => {
       } else {
         response = await enquiryApi.getAll();
       }
-      setOrders(response.data);
+      console.log(`Orders (${orderType}):`, response.data);
+      setOrders(Array.isArray(response.data) ? response.data : response.data.data || []);
     } catch (err) {
-      setError('Failed to load orders');
+      console.error(`Failed to load ${orderType} orders:`, err);
+      const errorMsg = err.response?.data?.message || err.message || `Failed to load ${orderType} orders`;
+      setError(errorMsg);
+      setOrders([]);
     } finally {
       setLoading(false);
     }
@@ -105,37 +110,45 @@ const AdminOrders = () => {
               </tr>
             </thead>
             <tbody>
-              {orders.map(order => (
-                <tr key={order._id} className="border-b hover:bg-gray-50">
-                  <td className="px-6 py-3">{order.name}</td>
-                  <td className="px-6 py-3 text-xs">{order.email}</td>
-                  <td className="px-6 py-3">{order.phone}</td>
-                  <td className="px-6 py-3">
-                    <select
-                      value={order.status}
-                      onChange={(e) => handleStatusChange(order._id, e.target.value)}
-                      className="px-2 py-1 border border-gray-300 rounded text-xs"
-                    >
-                      <option value="new">New</option>
-                      <option value="contacted">Contacted</option>
-                      <option value="quoted">Quoted</option>
-                      <option value="rejected">Rejected</option>
-                      <option value="completed">Completed</option>
-                    </select>
-                  </td>
-                  <td className="px-6 py-3 text-xs">
-                    {new Date(order.createdAt).toLocaleDateString()}
-                  </td>
-                  <td className="px-6 py-3">
-                    <button
-                      onClick={() => handleDelete(order._id)}
-                      className="text-red-600 hover:underline text-xs"
-                    >
-                      Delete
-                    </button>
+              {orders.length === 0 ? (
+                <tr>
+                  <td colSpan="6" className="px-6 py-8 text-center text-gray-500">
+                    No records found
                   </td>
                 </tr>
-              ))}
+              ) : (
+                orders.map(order => (
+                  <tr key={order._id} className="border-b hover:bg-gray-50">
+                    <td className="px-6 py-3">{order.name}</td>
+                    <td className="px-6 py-3 text-xs">{order.email}</td>
+                    <td className="px-6 py-3">{order.phone}</td>
+                    <td className="px-6 py-3">
+                      <select
+                        value={order.status}
+                        onChange={(e) => handleStatusChange(order._id, e.target.value)}
+                        className="px-2 py-1 border border-gray-300 rounded text-xs"
+                      >
+                        <option value="new">New</option>
+                        <option value="contacted">Contacted</option>
+                        <option value="quoted">Quoted</option>
+                        <option value="rejected">Rejected</option>
+                        <option value="completed">Completed</option>
+                      </select>
+                    </td>
+                    <td className="px-6 py-3 text-xs">
+                      {new Date(order.createdAt).toLocaleDateString()}
+                    </td>
+                    <td className="px-6 py-3">
+                      <button
+                        onClick={() => handleDelete(order._id)}
+                        className="text-red-600 hover:underline text-xs"
+                      >
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>
