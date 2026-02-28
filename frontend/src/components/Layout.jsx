@@ -13,13 +13,13 @@ export const Header = () => {
     <header className="bg-white border-b border-gray-100 sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 py-4">
         <div className="flex justify-between items-center">
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 flex-1">
             <img 
               src={logoImage} 
               alt="RAMYAAS Logo" 
               className="h-12 w-auto"
             />
-            <div>
+            <div className="hidden sm:block">
               <h1 className="text-xl font-bold text-ramyaas-700">
                 {gettext('ramyaas', language)}
               </h1>
@@ -29,15 +29,15 @@ export const Header = () => {
             </div>
           </div>
 
-          <div className="flex items-center gap-4">
-            {/* ✅ FIXED: Cart link */}
+          <div className="flex items-center gap-2 sm:gap-4">
+            {/* Cart link */}
             <Link
               to="/cart"
-              className="relative px-4 py-2 rounded-lg hover:bg-gray-100 transition-smooth"
+              className="relative p-2 sm:px-4 sm:py-2 rounded-lg hover:bg-gray-100 transition-smooth"
             >
               <span className="text-2xl">🛒</span>
               {getTotalItems() > 0 && (
-                <span className="absolute top-0 right-0 bg-red-500 text-white text-xs rounded-full w-6 h-6 flex items-center justify-center font-bold">
+                <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold">
                   {getTotalItems()}
                 </span>
               )}
@@ -45,7 +45,7 @@ export const Header = () => {
 
             <button
               onClick={toggleLanguage}
-              className="px-4 py-2 bg-ramyaas-100 text-ramyaas-700 rounded-lg font-semibold hover:bg-ramyaas-200 transition-smooth"
+              className="px-2 sm:px-4 py-2 bg-ramyaas-100 text-ramyaas-700 rounded-lg font-semibold hover:bg-ramyaas-200 transition-smooth text-sm sm:text-base"
             >
               {language === 'ta' ? 'EN' : 'TA'}
             </button>
@@ -102,7 +102,6 @@ export const Navigation = () => {
           >
             ☰
           </button>
-          <span className="text-xs text-gray-500">Menu</span>
         </div>
 
         {/* Mobile Menu Dropdown */}
