@@ -7,8 +7,8 @@ export const ToastContainer = ({ toasts, removeToast }) => {
   const { language } = useLanguage();
 
   const handleCheckout = (toastId) => {
-    removeToast(toastId);
     navigate('/checkout');
+    // Note: removeToast will happen automatically when toast timer expires
   };
 
   return (

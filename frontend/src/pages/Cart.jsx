@@ -145,7 +145,7 @@ const Cart = () => {
           <div className="lg:col-span-1">
             <div className="bg-white rounded-lg border border-gray-200 p-6 sticky top-4">
               <h2 className="text-xl font-bold text-gray-800 mb-6">
-                {language === 'ta' ? 'ஆர்டர் சारাংश' : 'Order Summary'}
+                {language === 'ta' ? 'ஆர்டர் சுருக்கம்' : 'Order Summary'}
               </h2>
 
               <div className="space-y-3 mb-6 pb-6 border-b border-gray-200">

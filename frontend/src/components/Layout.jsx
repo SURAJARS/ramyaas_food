@@ -49,7 +49,7 @@ export const Header = () => {
             >
               <span className="text-xl">🌐</span>
               <span>{language === 'ta' ? 'EN' : 'TA'}</span>
-              <span className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-gray-900 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-50 pointer-events-none">
+              <span className="absolute -top-12 left-1/2 transform -translate-x-1/2 px-3 py-2 bg-gray-900 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-[9999] pointer-events-none shadow-lg">
                 {language === 'ta' 
                   ? 'Switch to English' 
                   : 'தமிழ்க்கு மாற்றவும்'}
