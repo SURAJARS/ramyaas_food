@@ -8,33 +8,40 @@ import FeedbackSection from '../components/FeedbackSection';
 import ProductShowcase from '../components/ProductShowcase';
 import FAQSection from '../components/FAQSection';
 import logoImage from '../assets/logo.png';
-import { snackApi } from '../utils/api';
+import { snackApi, shippingApi } from '../utils/api';
 
 const Home = () => {
   const { language } = useLanguage();
   const [featuredSnacks, setFeaturedSnacks] = useState([]);
+  const [bannerSettings, setBannerSettings] = useState(null);
 
   useEffect(() => {
-    const fetchSnacks = async () => {
+    const fetchData = async () => {
       try {
-        const response = await snackApi.getAll();
+        const [snacksRes, bannerRes] = await Promise.all([
+          snackApi.getAll(),
+          shippingApi.getConfig()
+        ]);
         // Get first 5 snacks for carousel
-        setFeaturedSnacks(response.data.slice(0, 5));
+        setFeaturedSnacks(snacksRes.data.slice(0, 5));
+        setBannerSettings(bannerRes.data);
       } catch (error) {
-        console.error('Error fetching snacks:', error);
+        console.error('Error fetching data:', error);
       }
     };
-    fetchSnacks();
+    fetchData();
   }, []);
 
   return (
     <div className="min-h-screen bg-white">
       {/* Special Offer Banner */}
-      <section className="bg-gradient-to-r from-ramyaas-600 to-ramyaas-700 text-white py-3 px-4 text-center">
-        <p className="text-sm md:text-base font-semibold">
-          🎉 <span className="inline-block ml-2">Special Offer: Free Shipping on Orders Above ₹500!</span>
-        </p>
-      </section>
+      {bannerSettings?.bannerVisible && (
+        <section className="bg-gradient-to-r from-ramyaas-600 to-ramyaas-700 text-white py-3 px-4 text-center">
+          <p className="text-sm md:text-base font-semibold">
+            {language === 'ta' ? bannerSettings.bannerTextTA : bannerSettings.bannerTextEN}
+          </p>
+        </section>
+      )}
 
       {/* Hero Section with Gradient */}
       <section className="bg-gradient-to-b from-ramyaas-50 to-white py-12 md:py-16">

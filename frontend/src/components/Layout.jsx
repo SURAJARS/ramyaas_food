@@ -45,9 +45,15 @@ export const Header = () => {
 
             <button
               onClick={toggleLanguage}
-              className="px-2 sm:px-4 py-2 bg-ramyaas-100 text-ramyaas-700 rounded-lg font-semibold hover:bg-ramyaas-200 transition-smooth text-sm sm:text-base"
+              className="px-2 sm:px-4 py-2 bg-ramyaas-100 text-ramyaas-700 rounded-lg font-semibold hover:bg-ramyaas-200 transition-smooth text-sm sm:text-base flex items-center gap-2 group relative"
             >
-              {language === 'ta' ? 'EN' : 'TA'}
+              <span className="text-xl">🌐</span>
+              <span>{language === 'ta' ? 'EN' : 'TA'}</span>
+              <span className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-gray-900 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-50 pointer-events-none">
+                {language === 'ta' 
+                  ? 'Switch to English' 
+                  : 'தமிழ்க்கு மாற்றவும்'}
+              </span>
             </button>
           </div>
         </div>

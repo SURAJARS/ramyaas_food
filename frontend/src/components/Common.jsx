@@ -38,6 +38,7 @@ export const SnackCard = ({ snack }) => {
         price: selectedVariant.price
       }, quantity);
       setQuantity(1);
+      // Toast notification is now handled by CartContext
     }
   };
 

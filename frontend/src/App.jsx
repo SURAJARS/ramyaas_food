@@ -1,5 +1,6 @@
 import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import { Header, Navigation, Footer } from './components/Layout';
+import ToastContainer from './components/Toast';
 import Home from './pages/Home';
 import Snacks from './pages/Snacks';
 import Menu from './pages/Menu';
@@ -11,8 +12,11 @@ import Cart from './pages/Cart';
 import Checkout from './pages/Checkout';
 import OrderConfirmation from './pages/OrderConfirmation';
 import Admin from './pages/admin/Admin';
+import { useCart } from './context/CartContext';
 
 function App() {
+  const { toasts, removeToast } = useCart();
+
   return (
     <Router>
       <div className="flex flex-col min-h-screen">
@@ -34,6 +38,7 @@ function App() {
           </Routes>
         </main>
         <Footer />
+        <ToastContainer toasts={toasts} removeToast={removeToast} />
       </div>
     </Router>
   );

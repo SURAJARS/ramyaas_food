@@ -22,6 +22,12 @@ export const updateShippingConfig = async (req, res) => {
 
     if (req.body.shippingCharge !== undefined) config.shippingCharge = req.body.shippingCharge;
     if (req.body.freeShippingThreshold !== undefined) config.freeShippingThreshold = req.body.freeShippingThreshold;
+    
+    // Update banner fields
+    if (req.body.bannerTextEN !== undefined) config.bannerTextEN = req.body.bannerTextEN;
+    if (req.body.bannerTextTA !== undefined) config.bannerTextTA = req.body.bannerTextTA;
+    if (req.body.bannerVisible !== undefined) config.bannerVisible = req.body.bannerVisible;
+    
     config.updatedAt = new Date();
 
     const updatedConfig = await config.save();
