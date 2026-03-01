@@ -96,7 +96,7 @@ const tamilvEnglish = {
 
   // Hero section
   homemadeFresh: { ta: '💯 100% வீட்டில் தயாரிக்கப்பட்ட & புதிய', en: '✓ 100% Homemade & Fresh' },
-  noPreservatives: { ta: '🌿 பாதுகாப்பு அல்லது செயற்கை சேர்க்கைகள் இல்லை', en: '🌿 No Preservatives or Artificial Additives' },
+  noPreservatives: { ta: '🌿 பதனப்பொருட்கள் அல்லது செயற்கை சேர்க்கைகள் இல்லை', en: '🌿 No Preservatives or Artificial Additives' },
   yearsOfExcellence: { ta: '⭐ 5+ வருட சிறப்பு', en: '⭐ 5+ Years of Excellence' },
   shopSnacks: { ta: 'காரங்கள் வாங்கவும்', en: 'Shop Snacks' },
   cateringServices: { ta: 'கேட்டரிங் சேவைகள்', en: 'Catering Services' },

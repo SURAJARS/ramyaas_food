@@ -91,7 +91,7 @@ const Home = () => {
               </div>
               <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-xl border border-blue-200 text-center hover:shadow-lg transition-all">
                 <div className="text-4xl mb-2">🌱</div>
-                <p className="font-bold text-gray-800">{language === 'ta' ? 'பாதுகாப்பு இல்லை' : 'No Preservatives'}</p>
+                <p className="font-bold text-gray-800">{language === 'ta' ? 'பதனப்பொருட்கள் இல்லை' : 'No Preservatives'}</p>
                 <p className="text-sm text-gray-600 mt-1">{gettext('freshAlways', language)}</p>
               </div>
               <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 p-6 rounded-xl border border-yellow-200 text-center hover:shadow-lg transition-all">
