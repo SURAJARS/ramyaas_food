@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { useCart } from '../context/CartContext';
 import { gettext } from '../utils/translations';
+import { shippingApi } from '../utils/api';
 
 // Helper function to get correct image URL
 const getImageUrl = (imagePath) => {
@@ -26,6 +27,25 @@ const Cart = () => {
   const { language } = useLanguage();
   const { cartItems, removeFromCart, updateQuantity, getTotalPrice, getTotalItems } = useCart();
   const [imageErrors, setImageErrors] = useState({});
+  const [shippingConfig, setShippingConfig] = useState({ shippingCharge: 50, freeShippingThreshold: 500 });
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchShippingConfig = async () => {
+      try {
+        const response = await shippingApi.getConfig();
+        setShippingConfig(response.data);
+      } catch (error) {
+        console.error('Error fetching shipping config:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchShippingConfig();
+  }, []);
+
+  const subtotal = getTotalPrice();
+  const shippingCost = subtotal >= shippingConfig.freeShippingThreshold ? 0 : shippingConfig.shippingCharge;
 
   if (cartItems.length === 0) {
     return (
@@ -138,14 +158,14 @@ const Cart = () => {
                   <span>{getTotalItems()}</span>
                 </div>
                 <div className="flex justify-between text-gray-700">
-                  <span>{language === 'ta' ? 'டெலிவারி' : 'Delivery'}</span>
-                  <span>₹50</span>
+                  <span>{language === 'ta' ? 'டெலிவரி' : 'Delivery'}</span>
+                  <span>{shippingCost === 0 ? <span className="text-green-600 font-semibold">Free</span> : `₹${shippingCost}`}</span>
                 </div>
               </div>
 
               <div className="flex justify-between text-lg font-bold text-gray-800 mb-6">
                 <span>{language === 'ta' ? 'மொத்தம்' : 'Total'}</span>
-                <span>₹{(getTotalPrice() + 50).toFixed(2)}</span>
+                <span>₹{(subtotal + shippingCost).toFixed(2)}</span>
               </div>
 
               <Link

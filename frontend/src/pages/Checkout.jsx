@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { useCart } from '../context/CartContext';
 import { gettext } from '../utils/translations';
-import { couponApi, orderApi } from '../utils/api';
+import { couponApi, orderApi, shippingApi } from '../utils/api';
 import { SuccessMessage, ErrorMessage, LoadingSpinner } from '../components/Common';
 
 const Checkout = () => {
@@ -15,6 +15,7 @@ const Checkout = () => {
   const [error, setError] = useState(null);
   const [couponCode, setCouponCode] = useState('');
   const [discountAmount, setDiscountAmount] = useState(0);
+  const [shippingConfig, setShippingConfig] = useState({ shippingCharge: 50, freeShippingThreshold: 500 });
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -24,8 +25,20 @@ const Checkout = () => {
     zipCode: ''
   });
 
-  const shippingCost = 50;
+  useEffect(() => {
+    const fetchShippingConfig = async () => {
+      try {
+        const response = await shippingApi.getConfig();
+        setShippingConfig(response.data);
+      } catch (error) {
+        console.error('Error fetching shipping config:', error);
+      }
+    };
+    fetchShippingConfig();
+  }, []);
+
   const subtotal = getTotalPrice();
+  const shippingCost = subtotal >= shippingConfig.freeShippingThreshold ? 0 : shippingConfig.shippingCharge;
   const totalAmount = subtotal + shippingCost - discountAmount;
 
   const handleChange = (e) => {
@@ -267,7 +280,7 @@ const Checkout = () => {
               </div>
               <div className="flex justify-between text-gray-700">
                 <span>{language === 'ta' ? 'டெலிவரி' : 'Delivery'}</span>
-                <span>₹{shippingCost}</span>
+                <span>{shippingCost === 0 ? <span className="text-green-600 font-semibold">Free</span> : `₹${shippingCost}`}</span>
               </div>
               {discountAmount > 0 && (
                 <div className="flex justify-between text-green-600">
