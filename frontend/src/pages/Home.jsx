@@ -227,6 +227,26 @@ const Home = () => {
         </div>
       </section>
 
+      {/* Contact Us Section */}
+      <section className="bg-ramyaas-600 text-white py-16 md:py-20">
+        <div className="max-w-7xl mx-auto px-4 text-center">
+          <h2 className="text-4xl font-bold mb-4">
+            {language === 'ta' ? 'எங்களை தொடர்பு கொள்ளுங்கள்' : 'Get In Touch With Us'}
+          </h2>
+          <p className="text-ramyaas-100 text-lg mb-8">
+            {language === 'ta' 
+              ? 'உங்கள் கேள்விகளுக்கு நாம் இங்கே இருக்கிறோம். எங்களிடம் இன்று தொடர்பு கொள்ளுங்கள்!'
+              : 'Have questions? We are here to help. Reach out to us today!'}
+          </p>
+          <a
+            href="mailto:ramyakumar031998@gmail.com"
+            className="inline-block bg-white text-ramyaas-600 px-10 py-4 rounded-lg font-bold text-lg hover:bg-ramyaas-50 transition-smooth shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+          >
+            ✉️ Email Us
+          </a>
+        </div>
+      </section>
+
       {/* FAQ Section */}
       <FAQSection />
     </div>
