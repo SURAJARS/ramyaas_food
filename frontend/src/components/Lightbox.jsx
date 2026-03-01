@@ -20,7 +20,7 @@ export const LightboxImage = ({ src, title, onClose }) => {
       <div className="relative max-w-4xl max-h-screen" onClick={(e) => e.stopPropagation()}>
         <button
           onClick={onClose}
-          className="absolute -top-12 right-0 text-white text-3xl font-bold bg-black bg-opacity-60 hover:bg-opacity-80 w-10 h-10 flex items-center justify-center rounded-full transition-all duration-200 hover:scale-110 shadow-lg"
+          className="absolute top-4 right-4 text-white text-3xl font-bold bg-black bg-opacity-70 hover:bg-opacity-90 w-12 h-12 flex items-center justify-center rounded-full transition-all duration-200 hover:scale-110 shadow-lg z-10"
           title="Close (ESC)"
         >
           ✕
