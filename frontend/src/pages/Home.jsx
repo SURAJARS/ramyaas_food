@@ -53,15 +53,15 @@ const Home = () => {
               <div className="mb-8 space-y-2">
                 <div className="flex items-center gap-2 text-gray-700">
                   <span className="text-2xl">✓</span>
-                  <span className="font-semibold">100% Homemade & Fresh</span>
+                  <span className="font-semibold">{gettext('homemadeFresh', language)}</span>
                 </div>
                 <div className="flex items-center gap-2 text-gray-700">
                   <span className="text-2xl">🌿</span>
-                  <span className="font-semibold">No Preservatives or Artificial Additives</span>
+                  <span className="font-semibold">{gettext('noPreservatives', language)}</span>
                 </div>
                 <div className="flex items-center gap-2 text-gray-700">
                   <span className="text-2xl">⭐</span>
-                  <span className="font-semibold">5+ Years of Excellence</span>
+                  <span className="font-semibold">{gettext('yearsOfExcellence', language)}</span>
                 </div>
               </div>
 
@@ -71,13 +71,13 @@ const Home = () => {
                   to="/snacks"
                   className="bg-ramyaas-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-ramyaas-700 transition-smooth shadow-lg hover:shadow-xl transform hover:-translate-y-1"
                 >
-                  Shop Snacks
+                  {gettext('shopSnacks', language)}
                 </Link>
                 <Link
                   to="/catering"
                   className="border-2 border-ramyaas-600 text-ramyaas-600 px-8 py-3 rounded-lg font-semibold hover:bg-ramyaas-50 transition-smooth"
                 >
-                  Catering Services
+                  {gettext('cateringServices', language)}
                 </Link>
               </div>
             </div>
@@ -86,23 +86,23 @@ const Home = () => {
             <div className="grid grid-cols-2 gap-4">
               <div className="bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-xl border border-green-200 text-center hover:shadow-lg transition-all">
                 <div className="text-4xl mb-2">🚫</div>
-                <p className="font-bold text-gray-800">No Palm Oil</p>
-                <p className="text-sm text-gray-600 mt-1">100% Pure</p>
+                <p className="font-bold text-gray-800">{gettext('noPalmOil', language)}</p>
+                <p className="text-sm text-gray-600 mt-1">{gettext('pure', language)}</p>
               </div>
               <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-xl border border-blue-200 text-center hover:shadow-lg transition-all">
                 <div className="text-4xl mb-2">🌱</div>
-                <p className="font-bold text-gray-800">No Preservatives</p>
-                <p className="text-sm text-gray-600 mt-1">Fresh Always</p>
+                <p className="font-bold text-gray-800">{language === 'ta' ? 'பாதுகாப்பு இல்லை' : 'No Preservatives'}</p>
+                <p className="text-sm text-gray-600 mt-1">{gettext('freshAlways', language)}</p>
               </div>
               <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 p-6 rounded-xl border border-yellow-200 text-center hover:shadow-lg transition-all">
                 <div className="text-4xl mb-2">🌾</div>
-                <p className="font-bold text-gray-800">No Maida</p>
-                <p className="text-sm text-gray-600 mt-1">Healthy Choice</p>
+                <p className="font-bold text-gray-800">{gettext('noMaida', language)}</p>
+                <p className="text-sm text-gray-600 mt-1">{gettext('healthyChoice', language)}</p>
               </div>
               <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-6 rounded-xl border border-purple-200 text-center hover:shadow-lg transition-all">
                 <div className="text-4xl mb-2">⚗️</div>
-                <p className="font-bold text-gray-800">No Additives</p>
-                <p className="text-sm text-gray-600 mt-1">Natural Taste</p>
+                <p className="font-bold text-gray-800">{gettext('noAdditives', language)}</p>
+                <p className="text-sm text-gray-600 mt-1">{gettext('naturalTaste', language)}</p>
               </div>
             </div>
           </div>
@@ -113,8 +113,8 @@ const Home = () => {
       {featuredSnacks.length > 0 && (
         <section className="bg-white py-12 md:py-16 border-t border-gray-100">
           <div className="max-w-7xl mx-auto px-4">
-            <h2 className="text-3xl font-bold text-ramyaas-700 mb-2 text-center">⭐ Most Popular Products</h2>
-            <p className="text-gray-600 text-center mb-8">Our bestselling favorites loved by 500+ customers</p>
+            <h2 className="text-3xl font-bold text-ramyaas-700 mb-2 text-center">⭐ {language === 'ta' ? 'மிகவும் பிரபலமான பொருட்கள்' : 'Most Popular Products'}</h2>
+            <p className="text-gray-600 text-center mb-8">{language === 'ta' ? '500+ வாடிக்கையாளர்களால் விரும்பப்பட்ட எங்கள் சிறந்த விற்பனைகள்' : 'Our bestselling favorites loved by 500+ customers'}</p>
             <ProductCarousel products={featuredSnacks} />
           </div>
         </section>

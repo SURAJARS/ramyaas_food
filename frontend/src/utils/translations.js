@@ -93,6 +93,20 @@ const tamilvEnglish = {
   // Settings
   shippingCharge: { ta: 'ஷிப்பிங் கட்டணம்', en: 'Shipping Charge' },
   freeShippingThreshold: { ta: 'இலவச ஷிப்பிங் வரம்பு', en: 'Free Shipping Threshold' },
+
+  // Hero section
+  homemadeFresh: { ta: '💯 100% வீட்டில் தயாரிக்கப்பட்ட & புதிய', en: '✓ 100% Homemade & Fresh' },
+  noPreservatives: { ta: '🌿 பாதுகாப்பு அல்லது செயற்கை சேர்க்கைகள் இல்லை', en: '🌿 No Preservatives or Artificial Additives' },
+  yearsOfExcellence: { ta: '⭐ 5+ வருட சிறப்பு', en: '⭐ 5+ Years of Excellence' },
+  shopSnacks: { ta: 'காரங்கள் வாங்கவும்', en: 'Shop Snacks' },
+  cateringServices: { ta: 'கேட்டரிங் சேவைகள்', en: 'Catering Services' },
+  noPalmOil: { ta: 'பாமா எண்ணை இல்லை', en: 'No Palm Oil' },
+  pure: { ta: '100% தூய', en: '100% Pure' },
+  noMaida: { ta: 'மைதா இல்லை', en: 'No Maida' },
+  healthyChoice: { ta: 'ஆரோக்கியமான தேர்வு', en: 'Healthy Choice' },
+  noAdditives: { ta: 'சேர்க்கைகள் இல்லை', en: 'No Additives' },
+  naturalTaste: { ta: 'இயற்கையான சுவை', en: 'Natural Taste' },
+  freshAlways: { ta: 'எப்போதும் புதிய', en: 'Fresh Always' },
 };
 
 export const gettext = (key, language) => {
