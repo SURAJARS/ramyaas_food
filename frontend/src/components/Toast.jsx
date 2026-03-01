@@ -7,7 +7,7 @@ export const ToastContainer = ({ toasts, removeToast }) => {
   const { language } = useLanguage();
 
   const handleCheckout = (toastId) => {
-    navigate('/checkout');
+    navigate('/cart');
     // Note: removeToast will happen automatically when toast timer expires
   };
 
@@ -53,7 +53,7 @@ export const ToastContainer = ({ toasts, removeToast }) => {
                 }
               `}
             >
-              {language === 'ta' ? 'பேமண்ட்' : 'Pay'}
+              {language === 'ta' ? 'கார்ட்' : 'View Cart'}
             </button>
           )}
         </div>
