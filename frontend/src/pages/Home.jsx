@@ -29,78 +29,120 @@ const Home = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Hero Section */}
-      <section className="max-w-7xl mx-auto px-4 py-20 text-center">
-        <h1 className="text-5xl md:text-6xl font-bold text-ramyaas-700 mb-4">
-          {gettext('ramyaas', language)}
-        </h1>
-        <p className="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto">
-          {gettext('tagline', language)}
+      {/* Special Offer Banner */}
+      <section className="bg-gradient-to-r from-ramyaas-600 to-ramyaas-700 text-white py-3 px-4 text-center">
+        <p className="text-sm md:text-base font-semibold">
+          🎉 <span className="inline-block ml-2">Special Offer: Free Shipping on Orders Above ₹500!</span>
         </p>
-        
-        {/* Quality Highlights */}
-        <div className="mb-8 max-w-2xl mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm md:text-base font-medium text-gray-700">
-            <div className="py-2 px-3 bg-green-50 rounded-lg border border-green-200">
-              ✓ No Palm Oil
+      </section>
+
+      {/* Hero Section with Gradient */}
+      <section className="bg-gradient-to-b from-ramyaas-50 to-white py-12 md:py-16">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            {/* Left Content */}
+            <div>
+              <h1 className="text-4xl md:text-5xl font-bold text-ramyaas-700 mb-4 leading-tight">
+                {gettext('ramyaas', language)}
+              </h1>
+              <p className="text-lg md:text-xl text-gray-700 mb-6">
+                {gettext('tagline', language)}
+              </p>
+              
+              {/* Trust Badges - Inline */}
+              <div className="mb-8 space-y-2">
+                <div className="flex items-center gap-2 text-gray-700">
+                  <span className="text-2xl">✓</span>
+                  <span className="font-semibold">100% Homemade & Fresh</span>
+                </div>
+                <div className="flex items-center gap-2 text-gray-700">
+                  <span className="text-2xl">🌿</span>
+                  <span className="font-semibold">No Preservatives or Artificial Additives</span>
+                </div>
+                <div className="flex items-center gap-2 text-gray-700">
+                  <span className="text-2xl">⭐</span>
+                  <span className="font-semibold">5+ Years of Excellence</span>
+                </div>
+              </div>
+
+              {/* CTA Buttons */}
+              <div className="flex gap-4 flex-wrap">
+                <Link
+                  to="/snacks"
+                  className="bg-ramyaas-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-ramyaas-700 transition-smooth shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+                >
+                  Shop Snacks
+                </Link>
+                <Link
+                  to="/catering"
+                  className="border-2 border-ramyaas-600 text-ramyaas-600 px-8 py-3 rounded-lg font-semibold hover:bg-ramyaas-50 transition-smooth"
+                >
+                  Catering Services
+                </Link>
+              </div>
             </div>
-            <div className="py-2 px-3 bg-green-50 rounded-lg border border-green-200">
-              ✓ No Preservatives
-            </div>
-            <div className="py-2 px-3 bg-green-50 rounded-lg border border-green-200">
-              ✓ No Maida
-            </div>
-            <div className="py-2 px-3 bg-green-50 rounded-lg border border-green-200">
-              ✓ No Artificial Additives
+
+            {/* Right Side - Quality Highlights Grid */}
+            <div className="grid grid-cols-2 gap-4">
+              <div className="bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-xl border border-green-200 text-center hover:shadow-lg transition-all">
+                <div className="text-4xl mb-2">🚫</div>
+                <p className="font-bold text-gray-800">No Palm Oil</p>
+                <p className="text-sm text-gray-600 mt-1">100% Pure</p>
+              </div>
+              <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-xl border border-blue-200 text-center hover:shadow-lg transition-all">
+                <div className="text-4xl mb-2">🌱</div>
+                <p className="font-bold text-gray-800">No Preservatives</p>
+                <p className="text-sm text-gray-600 mt-1">Fresh Always</p>
+              </div>
+              <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 p-6 rounded-xl border border-yellow-200 text-center hover:shadow-lg transition-all">
+                <div className="text-4xl mb-2">🌾</div>
+                <p className="font-bold text-gray-800">No Maida</p>
+                <p className="text-sm text-gray-600 mt-1">Healthy Choice</p>
+              </div>
+              <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-6 rounded-xl border border-purple-200 text-center hover:shadow-lg transition-all">
+                <div className="text-4xl mb-2">⚗️</div>
+                <p className="font-bold text-gray-800">No Additives</p>
+                <p className="text-sm text-gray-600 mt-1">Natural Taste</p>
+              </div>
             </div>
           </div>
         </div>
-
-        <div className="flex gap-4 justify-center flex-wrap">
-          <Link
-            to="/snacks"
-            className="bg-ramyaas-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-ramyaas-700 transition-smooth"
-          >
-            {gettext('snacks', language)}
-          </Link>
-          <Link
-            to="/catering"
-            className="bg-gray-200 text-gray-800 px-8 py-3 rounded-lg font-semibold hover:bg-gray-300 transition-smooth"
-          >
-            {gettext('catering', language)}
-          </Link>
-        </div>
       </section>
 
-      {/* Product Carousel Section */}
-      {featuredSnacks.length > 0 && <ProductCarousel products={featuredSnacks} />}
+      {/* Featured Products Section */}
+      {featuredSnacks.length > 0 && (
+        <section className="bg-white py-12 md:py-16 border-t border-gray-100">
+          <div className="max-w-7xl mx-auto px-4">
+            <h2 className="text-3xl font-bold text-ramyaas-700 mb-2 text-center">⭐ Most Popular Products</h2>
+            <p className="text-gray-600 text-center mb-8">Our bestselling favorites loved by 500+ customers</p>
+            <ProductCarousel products={featuredSnacks} />
+          </div>
+        </section>
+      )}
 
-      {/* Categories Section */}
-      <CategoriesSection />
-
-      {/* Stats Section */}
-      <section className="bg-ramyaas-50 py-16">
+      {/* Stats Section - Trust & Social Proof */}
+      <section className="bg-gradient-to-r from-ramyaas-600 to-ramyaas-700 text-white py-12 md:py-16">
         <div className="max-w-7xl mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-            <div className="bg-white rounded-lg p-6 text-center border border-ramyaas-100">
-              <div className="text-4xl font-bold text-ramyaas-600 mb-2">🎉</div>
-              <p className="text-gray-600 font-semibold">100% Homemade Quality</p>
-              <p className="text-sm text-gray-500 mt-1">Fresh & Pure</p>
+            <div className="text-center">
+              <div className="text-4xl md:text-5xl font-bold mb-2">500+</div>
+              <p className="text-lg font-semibold">Happy Customers</p>
+              <p className="text-ramyaas-100 text-sm mt-1">Trusted & Loved</p>
             </div>
-            <div className="bg-white rounded-lg p-6 text-center border border-ramyaas-100">
-              <div className="text-4xl font-bold text-ramyaas-600 mb-2">⭐</div>
-              <p className="text-gray-600 font-semibold">500+ Happy Customers</p>
-              <p className="text-sm text-gray-500 mt-1">Trusted Since 2023</p>
+            <div className="text-center border-l border-r border-ramyaas-500">
+              <div className="text-4xl md:text-5xl font-bold mb-2">⭐ 4.9</div>
+              <p className="text-lg font-semibold">Ratings</p>
+              <p className="text-ramyaas-100 text-sm mt-1">From Customers</p>
             </div>
-            <div className="bg-white rounded-lg p-6 text-center border border-ramyaas-100">
-              <div className="text-4xl font-bold text-ramyaas-600 mb-2">🚚</div>
-              <p className="text-gray-600 font-semibold">Fast Delivery</p>
-              <p className="text-sm text-gray-500 mt-1">Quick & Convenient</p>
+            <div className="text-center">
+              <div className="text-4xl md:text-5xl font-bold mb-2">5+</div>
+              <p className="text-lg font-semibold">Years</p>
+              <p className="text-ramyaas-100 text-sm mt-1">Excellence</p>
             </div>
-            <div className="bg-white rounded-lg p-6 text-center border border-ramyaas-100">
-              <div className="text-4xl font-bold text-ramyaas-600 mb-2">💚</div>
-              <p className="text-gray-600 font-semibold">Made With Love</p>
-              <p className="text-sm text-gray-500 mt-1">For Your Family</p>
+            <div className="text-center border-l border-ramyaas-500">
+              <div className="text-4xl md:text-5xl font-bold mb-2">🚚</div>
+              <p className="text-lg font-semibold">Quick Delivery</p>
+              <p className="text-ramyaas-100 text-sm mt-1">Free on ₹500+</p>
             </div>
           </div>
         </div>
