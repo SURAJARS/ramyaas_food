@@ -240,7 +240,7 @@ const Checkout = () => {
           {/* Order Summary */}
           <div className="bg-white rounded-lg border border-gray-200 p-6 h-fit sticky top-4">
             <h2 className="text-xl font-bold text-gray-800 mb-6">
-              {language === 'ta' ? 'ஆர்டர் சারாংश' : 'Order Summary'}
+              {language === 'ta' ? 'ஆர்டர் சுருக்கம்' : 'Order Summary'}
             </h2>
 
             {/* Items */}
@@ -280,11 +280,11 @@ const Checkout = () => {
               </div>
               <div className="flex justify-between text-gray-700">
                 <span>{language === 'ta' ? 'டெலிவரி' : 'Delivery'}</span>
-                <span>{shippingCost === 0 ? <span className="text-green-600 font-semibold">Free</span> : `₹${shippingCost}`}</span>
+                <span>{shippingCost === 0 ? <span className="text-green-600 font-semibold">{language === 'ta' ? 'இலவசம்' : 'Free'}</span> : `₹${shippingCost}`}</span>
               </div>
               {discountAmount > 0 && (
                 <div className="flex justify-between text-green-600">
-                  <span>{language === 'ta' ? 'ছাড়' : 'Discount'}</span>
+                  <span>{language === 'ta' ? 'தள்ளுபடி' : 'Discount'}</span>
                   <span>-₹{discountAmount.toFixed(2)}</span>
                 </div>
               )}
