@@ -101,27 +101,27 @@ const FAQSection = () => {
         </div>
 
         {/* Additional Help */}
-        <div className="mt-16 bg-gradient-to-r from-ramyaas-100 to-amber-100 rounded-lg p-8 text-center border border-ramyaas-200">
-          <h3 className="text-2xl font-bold text-ramyaas-700 mb-3">
+        <div className="mt-16 bg-gradient-to-r from-yellow-100 to-yellow-50 rounded-lg p-10 text-center border-2 border-yellow-200">
+          <h3 className="text-3xl font-bold text-ramyaas-700 mb-3">
             {language === 'ta' ? 'இன்னும் உதவி தேவையா?' : 'Need More Help?'}
           </h3>
-          <p className="text-gray-700 mb-6">
+          <p className="text-gray-700 mb-8 text-lg">
             {language === 'ta' ? 'இன்னும் கேள்விகள் உள்ளதா? எங்கள் குழுவைத் தொடர்பு கொள்ளவும் மற்றும் நாங்கள் உதவ மகிழ்ச்சி கொள்வோம்!' : 'Still have questions? Contact our team and we\'ll be happy to help!'}
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <a
               href="mailto:ramyakumar031998@gmail.com"
-              className="px-6 py-3 bg-ramyaas-600 text-white rounded-lg font-semibold hover:bg-ramyaas-700 transition-colors"
+              className="px-8 py-3 bg-ramyaas-500 text-white rounded-lg font-bold text-base hover:bg-ramyaas-600 transition-all shadow-md hover:shadow-lg transform hover:-translate-y-1"
             >
-              {language === 'ta' ? 'மின்னஞ்சல் அனுப்பவும்' : 'Email Us'}
+              ✉️ {language === 'ta' ? 'மின்னஞ்சல் அனுப்பவும்' : 'Email Us'}
             </a>
             <a
               href="https://wa.me/917373105165"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-6 py-3 bg-green-500 text-white rounded-lg font-semibold hover:bg-green-600 transition-colors"
+              className="px-8 py-3 bg-green-500 text-white rounded-lg font-bold text-base hover:bg-green-600 transition-all shadow-md hover:shadow-lg transform hover:-translate-y-1"
             >
-              {language === 'ta' ? 'WhatsApp இல் தொடர்பு கொள்ளவும்' : 'Chat on WhatsApp'}
+              💬 {language === 'ta' ? 'WhatsApp இல் தொடர்பு கொள்ளவும்' : 'Chat on WhatsApp'}
             </a>
           </div>
         </div>
